@@ -482,9 +482,41 @@ body {
     font-size: 18px;
 }
 
+.footer-partners {
+    margin-top: 48px;
+}
+
+.footer-partners-label {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.footer-partner-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-partner-logos img {
+    height: 36px;
+    background: white;
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+.footer-partner-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #666;
+}
+
 .footer-legal {
-    margin-top: 60px;
-    padding-top: 30px;
+    margin-top: 24px;
+    padding-top: 24px;
     border-top: 1px solid #444;
     font-size: 13px;
     color: #666;
