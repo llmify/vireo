@@ -630,3 +630,30 @@ body {
         width: 100%;
     }
 }
+
+/* Responsive - mobile */
+@media (max-width: 600px) {
+    .feature-nav {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 10px 12px;
+        gap: 2px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .feature-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .feature-nav a {
+        font-size: 13px;
+        padding: 6px 12px;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .nav-divider {
+        margin: 4px 4px;
+    }
+}
