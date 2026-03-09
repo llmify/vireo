@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment - KI-Lerncoach</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .phone-frame {
+            max-width: 100%;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            height: 100%;
+            min-height: 100vh;
+        }
+
+        .content {
+            padding: 16px !important;
+        }
+
+        .section-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        /* Horizontal scrollable competency cards */
+        .competency-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .competency-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .comp-card {
+            min-width: 155px;
+            max-width: 155px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 14px 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            position: relative;
+        }
+
+        .comp-card.selected {
+            border-color: #C96B7E;
+            background: linear-gradient(135deg, #fce8eb 0%, #fff 100%);
+        }
+
+        .comp-card-id {
+            display: inline-block;
+            background: #C96B7E;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        .comp-card-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .comp-card-status {
+            font-size: 10px;
+            color: #888;
+        }
+
+        .comp-card-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+        }
+
+        .comp-card-badge.completed { background: #4caf50; }
+        .comp-card-badge.in-progress { background: #ff9800; }
+
+        /* Scroll dots */
+        .scroll-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .scroll-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ddd;
+        }
+
+        .scroll-dot.active {
+            background: #C96B7E;
+        }
+
+        /* Info box */
+        .info-box {
+            background: linear-gradient(135deg, #fce8eb 0%, #fff 100%);
+            border: 1px solid #e8d0d5;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .info-box-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #444;
+            line-height: 1.4;
+        }
+
+        .info-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .info-duration {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .start-btn {
+            width: 100%;
+            padding: 14px;
+            background: #C96B7E;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+    <div class="user-toggle">
+        <a href="index.html" class="user-toggle-btn active">Betreuer</a>
+        <a href="admin.html" class="user-toggle-btn">Admin</a>
+    </div>
+    <div class="phone-frame">
+        <div class="header">
+            <a href="dashboard.html" class="menu-icon" style="text-decoration: none; color: inherit;">
+                <img src="icons/back-72.png" alt="Back" class="icon-white" style="vertical-align: middle;">
+            </a>
+            <h1>Assessment</h1>
+            <span class="lang-selector">
+                <img src="icons/language-72.png" alt="Language" class="icon-white" style="vertical-align: middle;"> DE
+            </span>
+        </div>
+        <div class="content">
+            <div class="section-label">Wähle eine Kompetenz</div>
+
+            <div class="competency-scroll">
+                <div class="comp-card selected" onclick="selectCard(this)">
+                    <span class="comp-card-badge completed">&#10003;</span>
+                    <div class="comp-card-id">K1</div>
+                    <div class="comp-card-name">Haltung &amp; Berufsverständnis</div>
+                    <div class="comp-card-status">Abgeschlossen</div>
+                </div>
+                <div class="comp-card" onclick="selectCard(this)">
+                    <span class="comp-card-badge in-progress">&#9646;</span>
+                    <div class="comp-card-id">K2</div>
+                    <div class="comp-card-name">Beziehung &amp; Kommunikation</div>
+                    <div class="comp-card-status">In Bearbeitung</div>
+                </div>
+                <div class="comp-card" onclick="selectCard(this)">
+                    <div class="comp-card-id">K3</div>
+                    <div class="comp-card-name">Selbstkompetenz</div>
+                    <div class="comp-card-status">Noch nicht begonnen</div>
+                </div>
+            </div>
+
+            <div class="scroll-dots">
+                <div class="scroll-dot active"></div>
+                <div class="scroll-dot"></div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-title">So funktioniert's</div>
+                <div class="info-item">
+                    <img src="icons/chat-48.png" alt="" class="info-icon">
+                    <span>Der KI-Coach erzählt eine Geschichte aus dem Betreuungsalltag</span>
+                </div>
+                <div class="info-item">
+                    <img src="icons/decision-48.png" alt="" class="info-icon">
+                    <span>Deine Antworten beeinflussen, wie die Geschichte weitergeht</span>
+                </div>
+                <div class="info-item">
+                    <img src="icons/assessment-48.png" alt="" class="info-icon">
+                    <span>Am Ende erhältst du eine Einschätzung deiner Kompetenzen</span>
+                </div>
+                <div class="info-duration">
+                    <img src="icons/clock-48.png" alt="" style="width: 14px; height: 14px;">
+                    <span>Dauer: ca. 10–20 Minuten</span>
+                </div>
+            </div>
+
+            <button class="start-btn">Starten</button>
+        </div>
+    </div>
+
+    <script>
+        function selectCard(card) {
+            document.querySelectorAll('.comp-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+        }
+    </script>
+</body>
+</html>

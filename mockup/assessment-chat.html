@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kompetenz-Check - KI-Lerncoach</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .phone-frame {
+            max-width: 100%;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            height: 100%;
+            min-height: 100vh;
+        }
+
+        /* Scenario bubble */
+        .message.scenario .message-bubble {
+            background: #FFF8F0;
+            border-left: 3px solid #D4A574;
+            font-style: italic;
+            color: #5D4E37;
+        }
+
+        .scenario-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #8B7355;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Evaluation card */
+        .evaluation-card {
+            border-radius: 16px;
+            padding: 20px;
+            margin: 16px 12px;
+            text-align: center;
+        }
+
+        .evaluation-card.strength {
+            background: linear-gradient(135deg, #e8f5e9 0%, #fff 100%);
+            border: 2px solid #4caf50;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15);
+        }
+
+        .evaluation-header {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .evaluation-competency {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .evaluation-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 12px;
+            background: #4caf50;
+            color: white;
+        }
+
+        /* New topic divider */
+        .topic-divider {
+            text-align: center;
+            color: #6c757d;
+            font-size: 12px;
+            padding: 12px 0;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            margin: 8px 12px;
+        }
+
+        /* Coach label */
+        .coach-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #C96B7E;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="user-toggle">
+        <a href="index.html" class="user-toggle-btn active">Betreuer</a>
+        <a href="admin.html" class="user-toggle-btn">Admin</a>
+    </div>
+    <div class="phone-frame">
+        <div class="header">
+            <a href="competency-selection.html" class="menu-icon" style="text-decoration: none; color: inherit;">
+                <img src="icons/back-72.png" alt="Back" class="icon-white" style="vertical-align: middle;">
+            </a>
+            <h1>Kompetenz-Check</h1>
+            <span class="lang-selector">
+                <img src="icons/language-72.png" alt="Language" class="icon-white" style="vertical-align: middle;"> DE
+            </span>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Scenario -->
+            <div class="message scenario clearfix">
+                <div class="scenario-label">Szenario</div>
+                <div class="message-bubble">
+                    Du betreust Herrn W. (72), der seit dem Tod seiner Frau zurückgezogen lebt. Er öffnet die Tür nur widerwillig.
+                </div>
+            </div>
+
+            <!-- Coach message -->
+            <div class="message coach clearfix">
+                <div class="coach-label">KI-Coach</div>
+                <div class="message-bubble">
+                    Herr W. sagt: «Ich brauche niemanden. Lassen Sie mich in Ruhe.» Wie reagierst du?
+                </div>
+            </div>
+
+            <!-- User response -->
+            <div class="message user clearfix">
+                <div class="message-bubble">
+                    Ich würde seine Aussage ernst nehmen und nicht drängen. Vielleicht sage ich: «Das verstehe ich. Ich bin da, wenn Sie möchten.» Und dann schaue ich, ob er vielleicht doch ins Gespräch kommt.
+                </div>
+            </div>
+
+            <!-- Evaluation card -->
+            <div class="evaluation-card strength">
+                <div class="evaluation-header">Einschätzung abgeschlossen</div>
+                <div class="evaluation-competency">Aktives Zuhören &amp; Empathie</div>
+                <div class="evaluation-badge">
+                    <span>&#10003;</span>
+                    <span>Sicher</span>
+                </div>
+            </div>
+
+            <!-- New topic -->
+            <div class="topic-divider">Neues Thema</div>
+
+            <div class="message coach clearfix">
+                <div class="coach-label">KI-Coach</div>
+                <div class="message-bubble">
+                    Gut, weiter geht's! Eine Kollegin erzählt dir, dass sie sich von einer betreuten Person persönlich angegriffen fühlt. Was rätst du ihr?
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div style="background: white; border-top: 1px solid #ddd; padding: 12px 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 12px; font-weight: 600; color: #6c757d;">K2: Beziehung &amp; Kommunikation</span>
+                <span style="font-size: 12px; font-weight: 600; color: #C96B7E;">50%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 50%; background: #C96B7E;"></div>
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <input type="text" placeholder="Deine Antwort..." id="chat-input">
+            <button class="send-btn">
+                <img src="icons/send-72.png" alt="Send" class="icon-white" style="vertical-align: middle;">
+            </button>
+        </div>
+    </div>
+</body>
+</html>

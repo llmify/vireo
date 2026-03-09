@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lernmethode - KI-Lerncoach</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="translations.js"></script>
+    <style>
+        /* Override phone-frame for iframe embedding */
+        .phone-frame {
+            max-width: 100%;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            height: 100%;
+            min-height: 100vh;
+        }
+
+        /* Focus area context box */
+        .focus-area-context {
+            padding: 14px 16px;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 100%);
+            border: 1px solid #d0e3f0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .focus-area-context-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #5a7a9a;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .focus-area-context-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: #334155;
+        }
+
+        /* Question */
+        .mode-question {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        /* Mode cards */
+        .mode-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mode-card {
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .mode-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .mode-card-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .mode-card-icon {
+            width: 32px;
+            height: 32px;
+            margin-top: 2px;
+        }
+
+        .mode-card-info {
+            flex: 1;
+        }
+
+        .mode-card-name {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .mode-card-description {
+            color: #555;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .mode-card-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .mode-card-feature {
+            font-size: 10px;
+            font-weight: 500;
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+
+        /* Quiz colors */
+        .mode-card.quiz {
+            background: linear-gradient(135deg, rgba(63, 81, 181, 0.08) 0%, rgba(63, 81, 181, 0.15) 100%);
+            border: 1px solid rgba(63, 81, 181, 0.25);
+        }
+
+        .mode-card.quiz .mode-card-name {
+            color: #3F51B5;
+        }
+
+        .mode-card.quiz .mode-card-feature {
+            color: #3F51B5;
+            background: rgba(63, 81, 181, 0.08);
+            border: 1px solid rgba(63, 81, 181, 0.2);
+        }
+
+        /* Rollenspiel colors */
+        .mode-card.rollenspiel {
+            background: linear-gradient(135deg, rgba(194, 24, 91, 0.08) 0%, rgba(194, 24, 91, 0.15) 100%);
+            border: 1px solid rgba(194, 24, 91, 0.25);
+        }
+
+        .mode-card.rollenspiel .mode-card-name {
+            color: #C2185B;
+        }
+
+        .mode-card.rollenspiel .mode-card-feature {
+            color: #C2185B;
+            background: rgba(194, 24, 91, 0.08);
+            border: 1px solid rgba(194, 24, 91, 0.2);
+        }
+
+        /* Fallbeispiel colors */
+        .mode-card.fallbeispiel {
+            background: linear-gradient(135deg, rgba(0, 121, 107, 0.08) 0%, rgba(0, 121, 107, 0.15) 100%);
+            border: 1px solid rgba(0, 121, 107, 0.25);
+        }
+
+        .mode-card.fallbeispiel .mode-card-name {
+            color: #00796B;
+        }
+
+        .mode-card.fallbeispiel .mode-card-feature {
+            color: #00796B;
+            background: rgba(0, 121, 107, 0.08);
+            border: 1px solid rgba(0, 121, 107, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- User Toggle Buttons -->
+    <div class="user-toggle">
+        <a href="index.html" class="user-toggle-btn active">Betreuer</a>
+        <a href="admin.html" class="user-toggle-btn">Admin</a>
+    </div>
+    <div class="phone-frame">
+        <div class="header">
+            <a href="learning-path.html" class="menu-icon" style="text-decoration: none; color: inherit;">
+                <img src="icons/back-72.png" alt="Back" class="icon-white" style="vertical-align: middle;">
+            </a>
+            <h1>Lernmethode</h1>
+            <span class="lang-selector">
+                <img src="icons/language-72.png" alt="Language" class="icon-white" style="vertical-align: middle;"> DE
+            </span>
+        </div>
+        <div class="content" style="padding: 20px 16px;">
+            <!-- Focus area context -->
+            <div class="focus-area-context">
+                <div class="focus-area-context-label">Fokusthema</div>
+                <div class="focus-area-context-name">Empathie zeigen</div>
+            </div>
+
+            <!-- Question -->
+            <div class="mode-question">Wie mochtest du lernen?</div>
+
+            <!-- Mode cards -->
+            <div class="mode-cards">
+                <!-- Quiz -->
+                <a href="learning-chat.html?mode=quiz" style="text-decoration: none; color: inherit;">
+                    <div class="mode-card quiz">
+                        <div class="mode-card-content">
+                            <img src="icons/quiz-96.png" alt="Quiz" class="mode-card-icon">
+                            <div class="mode-card-info">
+                                <div class="mode-card-name">Quiz</div>
+                                <div class="mode-card-description">Beantworte Multiple-Choice-Fragen zu diesem Thema</div>
+                                <div class="mode-card-features">
+                                    <span class="mode-card-feature">Wahle aus Optionen</span>
+                                    <span class="mode-card-feature">Sofortiges Feedback</span>
+                                    <span class="mode-card-feature">Schnell & einfach</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Rollenspiel -->
+                <a href="learning-chat.html?mode=rollenspiel" style="text-decoration: none; color: inherit;">
+                    <div class="mode-card rollenspiel">
+                        <div class="mode-card-content">
+                            <img src="icons/rollenspiel-96.png" alt="Rollenspiel" class="mode-card-icon">
+                            <div class="mode-card-info">
+                                <div class="mode-card-name">Rollenspiel</div>
+                                <div class="mode-card-description">Der Coach spielt eine betreute Person - du reagierst</div>
+                                <div class="mode-card-features">
+                                    <span class="mode-card-feature">Freie Antworten</span>
+                                    <span class="mode-card-feature">Realistischer Dialog</span>
+                                    <span class="mode-card-feature">Kommunikation uben</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Fallbeispiel -->
+                <a href="learning-chat.html?mode=fallbeispiel" style="text-decoration: none; color: inherit;">
+                    <div class="mode-card fallbeispiel">
+                        <div class="mode-card-content">
+                            <img src="icons/fallbeispiel-96.png" alt="Fallbeispiel" class="mode-card-icon">
+                            <div class="mode-card-info">
+                                <div class="mode-card-name">Fallbeispiel</div>
+                                <div class="mode-card-description">Analysiere eine Situation gemeinsam mit dem Coach</div>
+                                <div class="mode-card-features">
+                                    <span class="mode-card-feature">Offene Diskussion</span>
+                                    <span class="mode-card-feature">Gemeinsam reflektieren</span>
+                                    <span class="mode-card-feature">Urteilsvermogen starken</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

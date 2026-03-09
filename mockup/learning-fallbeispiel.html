@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fallbeispiel - KI-Lerncoach</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Override phone-frame for iframe embedding */
+        .phone-frame {
+            max-width: 100%;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            height: 100%;
+            min-height: 100vh;
+        }
+
+        /* Unit progress indicator */
+        .unit-progress-indicator {
+            background: white;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .unit-progress-focus-area {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .unit-progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .unit-progress-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .unit-progress-count {
+            font-size: 13px;
+            font-weight: 600;
+            color: #C96B7E;
+        }
+
+        /* Theory block styling */
+        .message.theory .message-bubble {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e3f0fc 100%);
+            border-left: 3px solid #4a90d9;
+            color: #2c5282;
+        }
+
+        .theory-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #4a90d9;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Case block styling */
+        .message.case .message-bubble {
+            background: #FFF8F0;
+            border-left: 3px solid #D4A574;
+            color: #5D4E37;
+        }
+
+        .case-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #8B7355;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Help button row */
+        .help-button-row {
+            display: flex;
+            justify-content: center;
+            padding: 8px 16px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .help-pill-button {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .help-pill-button:hover {
+            background: #f0f0f0;
+            border-color: #ccc;
+        }
+
+        /* Adjust chat input */
+        .chat-input-wrapper {
+            display: flex;
+            gap: 8px;
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input-wrapper input {
+            flex: 1;
+        }
+
+        .voice-btn {
+            width: 44px;
+            min-width: 44px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .voice-btn img {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- User Toggle Buttons -->
+    <div class="user-toggle">
+        <a href="index.html" class="user-toggle-btn active">Betreuer</a>
+        <a href="admin.html" class="user-toggle-btn">Admin</a>
+    </div>
+    <div class="phone-frame">
+        <div class="header">
+            <a href="learning-path.html" class="menu-icon" style="text-decoration: none; color: inherit;">
+                <img src="icons/back-72.png" alt="Back" class="icon-white" style="vertical-align: middle;">
+            </a>
+            <h1>Fallbeispiel</h1>
+            <span class="lang-selector">
+                <img src="icons/language-72.png" alt="Language" class="icon-white" style="vertical-align: middle;"> DE
+            </span>
+        </div>
+
+        <!-- Unit progress indicator -->
+        <div class="unit-progress-indicator">
+            <div class="unit-progress-focus-area">Empathie zeigen</div>
+            <div class="unit-progress-info">
+                <span class="unit-progress-title">Aktives Zuhören</span>
+                <span class="unit-progress-count">1/3</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 33%;"></div>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chat-messages">
+            <!-- Theory block -->
+            <div class="message theory clearfix">
+                <div class="theory-label">Theorie</div>
+                <div class="message-bubble">
+                    <strong>Aktives Zuhören</strong> bedeutet, dem Gesprächspartner volle Aufmerksamkeit zu schenken und dies auch zu zeigen.
+                    <br><br>
+                    Wichtige Elemente:
+                    <ul style="margin: 8px 0 0 16px; padding: 0;">
+                        <li>Blickkontakt halten</li>
+                        <li>Bestätigendes Nicken</li>
+                        <li>Gefühle spiegeln</li>
+                        <li>Offene Fragen stellen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Case description -->
+            <div class="message case clearfix">
+                <div class="case-label">Fallbeispiel</div>
+                <div class="message-bubble">
+                    Frau Meier, 78, erzählt Ihnen beim Besuch: "Ach, wissen Sie, manchmal denke ich an früher... Da war alles anders. Mein Mann und ich haben hier so viele schöne Jahre verbracht."
+                </div>
+            </div>
+
+            <!-- Coach question -->
+            <div class="message coach clearfix">
+                <div class="message-bubble">
+                    Wie würden Sie in dieser Situation aktives Zuhören anwenden?
+                    <br><br>
+                    Was wäre eine gute Reaktion auf Frau Meiers Aussage?
+                </div>
+            </div>
+
+            <!-- User answer -->
+            <div class="message user clearfix">
+                <div class="message-bubble">
+                    Ich würde ihre Gefühle spiegeln und eine offene Frage stellen, z.B.: "Das klingt nach einer bewegten Zeit. Mögen Sie mir mehr davon erzählen?"
+                </div>
+            </div>
+
+            <!-- Coach feedback -->
+            <div class="message coach clearfix">
+                <div class="message-bubble">
+                    Sehr gut! Sie haben zwei wichtige Elemente des aktiven Zuhörens richtig angewendet:
+                    <br><br>
+                    <strong>✓ Gefühle spiegeln:</strong> "Das klingt nach einer bewegten Zeit"
+                    <br>
+                    <strong>✓ Offene Frage:</strong> "Mögen Sie mir mehr davon erzählen?"
+                    <br><br>
+                    Das ermutigt Frau Meier, sich weiter zu öffnen und zeigt echtes Interesse.
+                </div>
+            </div>
+        </div>
+
+        <!-- Help button row -->
+        <div class="help-button-row">
+            <button type="button" class="help-pill-button">
+                Frage stellen
+            </button>
+        </div>
+
+        <!-- Chat input -->
+        <div class="chat-input-wrapper">
+            <input type="text" placeholder="Ihre Antwort..." id="chat-input">
+            <button class="voice-btn">
+                <img src="icons/microphone-72.png" alt="Voice">
+            </button>
+            <button class="send-btn">
+                <img src="icons/send-72.png" alt="Send" class="icon-white" style="vertical-align: middle;">
+            </button>
+        </div>
+    </div>
+</body>
+</html>

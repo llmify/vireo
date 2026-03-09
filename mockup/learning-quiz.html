@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - KI-Lerncoach</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Override phone-frame for iframe embedding */
+        .phone-frame {
+            max-width: 100%;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            height: 100%;
+            min-height: 100vh;
+        }
+
+        /* Unit progress indicator */
+        .unit-progress-indicator {
+            background: white;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .unit-progress-focus-area {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .unit-progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .unit-progress-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .unit-progress-count {
+            font-size: 13px;
+            font-weight: 600;
+            color: #C96B7E;
+        }
+
+        /* Quiz options inline */
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin: 12px 12px 16px 12px;
+        }
+
+        .quiz-option {
+            padding: 10px 14px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #333;
+            text-align: left;
+        }
+
+        .quiz-option.selected {
+            background: #fdf5f6;
+            border-color: #C96B7E;
+            color: #C96B7E;
+            font-weight: 500;
+        }
+
+        .quiz-option.correct {
+            background: #e8f5e9;
+            border-color: #4caf50;
+            color: #2e7d32;
+            font-weight: 500;
+        }
+
+        .quiz-option.incorrect {
+            background: #ffebee;
+            border-color: #f44336;
+            color: #c62828;
+        }
+
+        /* Help button row */
+        .help-button-row {
+            display: flex;
+            justify-content: center;
+            padding: 8px 16px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .help-pill-button {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- User Toggle Buttons -->
+    <div class="user-toggle">
+        <a href="index.html" class="user-toggle-btn active">Betreuer</a>
+        <a href="admin.html" class="user-toggle-btn">Admin</a>
+    </div>
+    <div class="phone-frame">
+        <div class="header">
+            <a href="learning-path.html" class="menu-icon" style="text-decoration: none; color: inherit;">
+                <img src="icons/back-72.png" alt="Back" class="icon-white" style="vertical-align: middle;">
+            </a>
+            <h1>Quiz</h1>
+            <span class="lang-selector">
+                <img src="icons/language-72.png" alt="Language" class="icon-white" style="vertical-align: middle;"> DE
+            </span>
+        </div>
+
+        <!-- Unit progress indicator -->
+        <div class="unit-progress-indicator">
+            <div class="unit-progress-focus-area">Empathie zeigen</div>
+            <div class="unit-progress-info">
+                <span class="unit-progress-title">Aktives Zuhören</span>
+                <span class="unit-progress-count">2/3</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 66%;"></div>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chat-messages">
+            <!-- Coach question -->
+            <div class="message coach clearfix">
+                <div class="message-bubble">
+                    Was ist beim aktiven Zuhören am wichtigsten?
+                </div>
+            </div>
+
+            <!-- Quiz options with selection -->
+            <div class="quiz-options">
+                <div class="quiz-option">Möglichst viele Ratschläge geben</div>
+                <div class="quiz-option correct">Gefühle spiegeln und offene Fragen stellen</div>
+                <div class="quiz-option">Das Gespräch schnell zum Punkt bringen</div>
+                <div class="quiz-option">Eigene Erfahrungen teilen</div>
+            </div>
+
+            <!-- Coach feedback -->
+            <div class="message coach clearfix">
+                <div class="message-bubble">
+                    <strong style="color: #4caf50;">✓ Richtig!</strong> Gefühle spiegeln zeigt Verständnis. Offene Fragen ermutigen zum Weitererzählen.
+                </div>
+            </div>
+
+            <!-- Next question -->
+            <div class="message coach clearfix">
+                <div class="message-bubble">
+                    Was sollten Sie vermeiden, wenn jemand von schwierigen Erfahrungen erzählt?
+                </div>
+            </div>
+
+            <!-- Current quiz options -->
+            <div class="quiz-options">
+                <div class="quiz-option">Blickkontakt halten</div>
+                <div class="quiz-option selected">Sofort Lösungen vorschlagen</div>
+                <div class="quiz-option">Nachfragen stellen</div>
+                <div class="quiz-option">Kurz zusammenfassen</div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

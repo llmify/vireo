@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Lernpfad - KI-Lerncoach</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Override phone-frame for iframe embedding */
+        .phone-frame {
+            max-width: 100%;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            height: 100%;
+            min-height: 100vh;
+        }
+
+        /* Focus area cards */
+        .focus-area-card {
+            border-radius: 10px;
+            margin-bottom: 12px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .focus-area-card.priority {
+            background: linear-gradient(135deg, #fff8e7 0%, #fff3cd 100%);
+            border: 2px solid #ffa500;
+        }
+
+        .focus-area-card.priority.selected {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe4a3 100%);
+        }
+
+        .focus-area-card.normal {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+        }
+
+        .focus-area-card.normal.selected {
+            background: #f8f9fa;
+            border: 2px solid #C96B7E;
+        }
+
+        .focus-area-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .focus-area-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .focus-area-parent {
+            font-size: 11px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .priority-badge {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #e65100;
+            background: rgba(230, 81, 0, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Vertical timeline */
+        .vertical-timeline {
+            display: flex;
+            flex-direction: column;
+            margin-top: 14px;
+            padding-left: 4px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .timeline-dot-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+        .timeline-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid;
+            flex-shrink: 0;
+        }
+
+        .timeline-dot.completed {
+            border-color: #555;
+            background: #555;
+        }
+
+        .timeline-dot.current {
+            border-color: #555;
+            background: linear-gradient(to right, #555 50%, transparent 50%);
+        }
+
+        .timeline-dot.pending {
+            border-color: #ccc;
+            background: transparent;
+        }
+
+        .timeline-line {
+            width: 2px;
+            flex: 1;
+            min-height: 16px;
+        }
+
+        .timeline-line.completed {
+            background: #555;
+        }
+
+        .timeline-line.pending {
+            background: #e0e0e0;
+        }
+
+        .timeline-label {
+            font-size: 12px;
+            padding-bottom: 6px;
+        }
+
+        .timeline-label.completed {
+            color: #555;
+        }
+
+        .timeline-label.current {
+            color: #555;
+            font-weight: 500;
+        }
+
+        .timeline-label.pending {
+            color: #666;
+        }
+
+        .focus-area-button {
+            width: 100%;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 14px;
+        }
+
+        .focus-area-button.priority {
+            background: #e65100;
+            color: white;
+        }
+
+        .focus-area-button.normal {
+            background: #C96B7E;
+            color: white;
+        }
+
+        .focus-area-button.complete {
+            background: #e8f5e9;
+            color: #4caf50;
+            border: 1px solid #4caf50;
+            cursor: default;
+        }
+
+        /* Summary box */
+        .lernpfad-summary-box {
+            padding: 14px 16px;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 100%);
+            border: 1px solid #d0e3f0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .summary-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #5a7a9a;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-text {
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.4;
+        }
+
+        /* Focus areas header */
+        .focus-areas-header {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        /* Footer */
+        .lernpfad-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .lernpfad-meta {
+            font-size: 10px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .regenerate-link {
+            background: transparent;
+            border: none;
+            color: #999;
+            font-size: 11px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- User Toggle Buttons -->
+    <div class="user-toggle">
+        <a href="index.html" class="user-toggle-btn active">Betreuer</a>
+        <a href="admin.html" class="user-toggle-btn">Admin</a>
+    </div>
+    <div class="phone-frame">
+        <div class="header">
+            <a href="dashboard.html" class="menu-icon" style="text-decoration: none; color: inherit;">
+                <img src="icons/back-72.png" alt="Back" class="icon-white" style="vertical-align: middle;">
+            </a>
+            <h1>Mein Lernpfad</h1>
+            <span class="lang-selector">
+                <img src="icons/language-72.png" alt="Language" class="icon-white" style="vertical-align: middle;"> DE
+            </span>
+        </div>
+        <div class="content" style="padding: 16px;">
+            <!-- Summary box -->
+            <div class="lernpfad-summary-box">
+                <div class="summary-label">Dein Fokus</div>
+                <div class="summary-text">Du arbeitest an empathischer Kommunikation und einer professionellen Haltung im Umgang mit schwierigen Situationen.</div>
+            </div>
+
+            <!-- Focus areas header -->
+            <div class="focus-areas-header">3 Fokusthemen</div>
+
+            <!-- Focus area 1: Priority, selected, in progress -->
+            <div class="focus-area-card priority selected" onclick="toggleCard(this)">
+                <div class="focus-area-header">
+                    <div style="flex: 1;">
+                        <div class="focus-area-name">Empathie zeigen</div>
+                        <div class="focus-area-parent">K2: Kommunikation & Beziehung</div>
+                    </div>
+                    <span class="priority-badge">Priorität</span>
+                </div>
+
+                <!-- Expanded content -->
+                <div class="expanded-content">
+                    <div class="vertical-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot-container">
+                                <div class="timeline-dot completed"></div>
+                                <div class="timeline-line completed"></div>
+                            </div>
+                            <div class="timeline-label completed">Gefühle erkennen</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot-container">
+                                <div class="timeline-dot current"></div>
+                                <div class="timeline-line pending"></div>
+                            </div>
+                            <div class="timeline-label current">Aktives Zuhören</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot-container">
+                                <div class="timeline-dot pending"></div>
+                            </div>
+                            <div class="timeline-label pending" style="padding-bottom: 0;">Mitfühlend reagieren</div>
+                        </div>
+                    </div>
+                    <button class="focus-area-button priority">Fortsetzen (Quiz)</button>
+                </div>
+            </div>
+
+            <!-- Focus area 2: Normal, collapsed -->
+            <div class="focus-area-card normal" onclick="toggleCard(this)">
+                <div class="focus-area-header">
+                    <div style="flex: 1;">
+                        <div class="focus-area-name">Professionelle Haltung</div>
+                        <div class="focus-area-parent">K2: Kommunikation & Beziehung</div>
+                    </div>
+                </div>
+                <div class="expanded-content" style="display: none;">
+                    <div class="vertical-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot-container">
+                                <div class="timeline-dot pending"></div>
+                                <div class="timeline-line pending"></div>
+                            </div>
+                            <div class="timeline-label pending">Wertschatzende Grundhaltung</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot-container">
+                                <div class="timeline-dot pending"></div>
+                                <div class="timeline-line pending"></div>
+                            </div>
+                            <div class="timeline-label pending">Vorurteilsfreies Begegnen</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot-container">
+                                <div class="timeline-dot pending"></div>
+                            </div>
+                            <div class="timeline-label pending" style="padding-bottom: 0;">Authentisch bleiben</div>
+                        </div>
+                    </div>
+                    <button class="focus-area-button normal">Starten</button>
+                </div>
+            </div>
+
+            <!-- Focus area 3: Normal, collapsed -->
+            <div class="focus-area-card normal" onclick="toggleCard(this)">
+                <div class="focus-area-header">
+                    <div style="flex: 1;">
+                        <div class="focus-area-name">Konflikte ansprechen</div>
+                        <div class="focus-area-parent">K2: Kommunikation & Beziehung</div>
+                    </div>
+                </div>
+                <div class="expanded-content" style="display: none;">
+                    <div class="vertical-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot-container">
+                                <div class="timeline-dot pending"></div>
+                                <div class="timeline-line pending"></div>
+                            </div>
+                            <div class="timeline-label pending">Konflikte erkennen</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot-container">
+                                <div class="timeline-dot pending"></div>
+                                <div class="timeline-line pending"></div>
+                            </div>
+                            <div class="timeline-label pending">Deeskalierend kommunizieren</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot-container">
+                                <div class="timeline-dot pending"></div>
+                            </div>
+                            <div class="timeline-label pending" style="padding-bottom: 0;">Losungen finden</div>
+                        </div>
+                    </div>
+                    <button class="focus-area-button normal">Starten</button>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="lernpfad-footer">
+                <div class="lernpfad-meta">Erstellt am 28.01.2026 | Basiert auf K1 + K2</div>
+                <button class="regenerate-link" onclick="alert('Lernpfad wird neu erstellt...')">Neu erstellen</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCard(card) {
+            const expandedContent = card.querySelector('.expanded-content');
+            const isCurrentlyExpanded = expandedContent.style.display !== 'none';
+
+            // Collapse all other cards
+            document.querySelectorAll('.focus-area-card').forEach(c => {
+                const content = c.querySelector('.expanded-content');
+                if (content && c !== card) {
+                    content.style.display = 'none';
+                    c.classList.remove('selected');
+                }
+            });
+
+            // Toggle this card
+            if (isCurrentlyExpanded) {
+                expandedContent.style.display = 'none';
+                card.classList.remove('selected');
+            } else {
+                expandedContent.style.display = 'block';
+                card.classList.add('selected');
+            }
+        }
+    </script>
+</body>
+
+</html>

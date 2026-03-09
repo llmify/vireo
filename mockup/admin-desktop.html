@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koordinatoren-Dashboard - KI-Lerncoach</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            font-size: 13px;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            background: linear-gradient(135deg, #C96B7E 0%, #a85566 100%);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .nav-avatar {
+            width: 28px;
+            height: 28px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 16px 20px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .page-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .export-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .export-btn:hover {
+            background: #f8f9fa;
+        }
+
+        /* Stats Cards */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 8px;
+            padding: 14px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .stat-value.success { color: #4caf50; }
+        .stat-value.warning { color: #ff9800; }
+        .stat-value.primary { color: #C96B7E; }
+
+        /* Table */
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .search-input {
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 12px;
+            width: 180px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px 16px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        th {
+            background: #fafafa;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #666;
+            letter-spacing: 0.3px;
+        }
+
+        tr:hover {
+            background: #fafafa;
+        }
+
+        .member-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .member-avatar {
+            width: 32px;
+            height: 32px;
+            background: #C96B7E;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .member-name {
+            font-weight: 500;
+        }
+
+        .member-email {
+            font-size: 11px;
+            color: #888;
+        }
+
+        /* Progress bar */
+        .progress-cell {
+            min-width: 100px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e8e8e8;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+
+        .progress-fill.success { background: #4caf50; }
+        .progress-fill.warning { background: #ff9800; }
+        .progress-fill.primary { background: #C96B7E; }
+
+        .progress-text {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* Status badge */
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .status-badge.complete {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-badge.in-progress {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .status-badge.not-started {
+            background: #f5f5f5;
+            color: #757575;
+        }
+
+        /* Action button */
+        .action-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .action-btn:hover {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-brand">KI-Lerncoach | Koordinatoren-Dashboard</div>
+        <div class="nav-user">
+            <span>Leitung Freiwillige</span>
+            <div class="nav-avatar">LF</div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Team-Übersicht</h1>
+            <button class="export-btn">
+                <span>&#8595;</span> Export
+            </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-label">Team-Mitglieder</div>
+                <div class="stat-value">12</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Abgeschlossen</div>
+                <div class="stat-value success">5</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">In Bearbeitung</div>
+                <div class="stat-value warning">4</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Durchschn. Fortschritt</div>
+                <div class="stat-value primary">68%</div>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <div class="table-header">
+                <span class="table-title">Mitarbeiter-Fortschritt</span>
+                <input type="text" class="search-input" placeholder="Suchen...">
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mitarbeiter</th>
+                        <th>Fortschritt</th>
+                        <th>Status</th>
+                        <th>Letzte Aktivität</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="member-info">
+                                <div class="member-avatar">MM</div>
+                                <div>
+                                    <div class="member-name">Maria Muster</div>
+                                    <div class="member-email">maria.muster@beispiel.ch</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="progress-cell">
+                            <div class="progress-bar"><div class="progress-fill success" style="width: 100%;"></div></div>
+                            <div class="progress-text">4/4 Bereiche</div>
+                        </td>
+                        <td><span class="status-badge complete">Abgeschlossen</span></td>
+                        <td style="color: #888;">Heute, 14:32</td>
+                        <td><button class="action-btn">Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="member-info">
+                                <div class="member-avatar">AH</div>
+                                <div>
+                                    <div class="member-name">Ariana Hoxha</div>
+                                    <div class="member-email">ariana.hoxha@beispiel.ch</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="progress-cell">
+                            <div class="progress-bar"><div class="progress-fill warning" style="width: 50%;"></div></div>
+                            <div class="progress-text">2/4 Bereiche</div>
+                        </td>
+                        <td><span class="status-badge in-progress">In Bearbeitung</span></td>
+                        <td style="color: #888;">Gestern, 09:15</td>
+                        <td><button class="action-btn">Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="member-info">
+                                <div class="member-avatar">TK</div>
+                                <div>
+                                    <div class="member-name">Thomas Keller</div>
+                                    <div class="member-email">thomas.keller@beispiel.ch</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="progress-cell">
+                            <div class="progress-bar"><div class="progress-fill primary" style="width: 75%;"></div></div>
+                            <div class="progress-text">3/4 Bereiche</div>
+                        </td>
+                        <td><span class="status-badge in-progress">In Bearbeitung</span></td>
+                        <td style="color: #888;">27.01.2025</td>
+                        <td><button class="action-btn">Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="member-info">
+                                <div class="member-avatar">SB</div>
+                                <div>
+                                    <div class="member-name">Sandra Brunner</div>
+                                    <div class="member-email">sandra.brunner@beispiel.ch</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="progress-cell">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 0%; background: #e0e0e0;"></div></div>
+                            <div class="progress-text">0/4 Bereiche</div>
+                        </td>
+                        <td><span class="status-badge not-started">Nicht begonnen</span></td>
+                        <td style="color: #888;">-</td>
+                        <td><button class="action-btn">Details</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

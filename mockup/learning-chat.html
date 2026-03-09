@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lerneinheit - KI-Lerncoach</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Override phone-frame for iframe embedding */
+        .phone-frame {
+            max-width: 100%;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            height: 100%;
+            min-height: 100vh;
+        }
+
+        /* Unit progress indicator */
+        .unit-progress-indicator {
+            background: white;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .unit-progress-header {
+            margin-bottom: 4px;
+        }
+
+        .unit-progress-focus-area {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .unit-progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .unit-progress-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .unit-progress-count {
+            font-size: 13px;
+            font-weight: 600;
+            color: #C96B7E;
+        }
+
+        /* Role indicator banner */
+        .role-indicator {
+            background: linear-gradient(135deg, #6b5b95 0%, #5a4a7a 100%);
+            color: white;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .role-icon {
+            width: 28px;
+            height: 28px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .role-text {
+            flex: 1;
+        }
+
+        .role-label {
+            font-size: 10px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .role-name {
+            font-weight: 600;
+        }
+
+        /* Scenario bubble - warm yellow like real app */
+        .message.scenario .message-bubble {
+            background: #FFF8F0;
+            border-left: 3px solid #D4A574;
+            font-style: italic;
+            color: #5D4E37;
+        }
+
+        .scenario-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #8B7355;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Help message styling */
+        .help-message-indicator {
+            font-size: 11px;
+            color: #0d6efd;
+            margin-bottom: 4px;
+        }
+
+        .message-bubble-help {
+            background: linear-gradient(135deg, #e8f4fc 0%, #d4edfc 100%) !important;
+            border-left: 3px solid #0d6efd !important;
+        }
+
+        /* Help button row */
+        .help-button-row {
+            display: flex;
+            justify-content: center;
+            padding: 8px 16px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .help-pill-button {
+            background: #e8f4fc;
+            border: 1px solid #b8ddf0;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            color: #0d6efd;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .help-pill-button:hover {
+            background: #d4edfc;
+            border-color: #0d6efd;
+        }
+
+        /* Help menu */
+        .help-menu-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+        }
+
+        .help-menu {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 101;
+            min-width: 180px;
+            margin-bottom: 8px;
+        }
+
+        .help-menu-item {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .help-menu-item:hover {
+            background: #f8f9fa;
+        }
+
+        .help-menu-separator {
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        /* Options container for quiz mode */
+        .options-container {
+            padding: 12px 16px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option-btn {
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            background: #e9ecef;
+            border-color: #C96B7E;
+        }
+
+        .option-btn-primary {
+            background: #C96B7E;
+            color: white;
+            border-color: #C96B7E;
+            text-align: center;
+        }
+
+        .option-btn-primary:hover {
+            background: #b35a6d;
+        }
+
+        /* Voice button */
+        .voice-btn {
+            width: 44px;
+            min-width: 44px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .voice-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Adjust chat input */
+        .chat-input-wrapper {
+            display: flex;
+            gap: 8px;
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input-wrapper input {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- User Toggle Buttons -->
+    <div class="user-toggle">
+        <a href="index.html" class="user-toggle-btn active">Betreuer</a>
+        <a href="admin.html" class="user-toggle-btn">Admin</a>
+    </div>
+    <div class="phone-frame">
+        <div class="header">
+            <a href="learning-path.html" class="menu-icon" style="text-decoration: none; color: inherit;">
+                <img src="icons/back-72.png" alt="Back" class="icon-white" style="vertical-align: middle;">
+            </a>
+            <h1>Lerneinheit</h1>
+            <span class="lang-selector">
+                <img src="icons/language-72.png" alt="Language" class="icon-white" style="vertical-align: middle;"> DE
+            </span>
+        </div>
+
+        <!-- Role indicator for roleplay -->
+        <div class="role-indicator">
+            <div class="role-icon">👤</div>
+            <div class="role-text">
+                <div class="role-label">Deine Rolle</div>
+                <div class="role-name">Betreuungsperson</div>
+            </div>
+        </div>
+
+        <!-- Unit progress indicator -->
+        <div class="unit-progress-indicator">
+            <div class="unit-progress-header">
+                <div class="unit-progress-focus-area">Empathie zeigen</div>
+            </div>
+            <div class="unit-progress-info">
+                <span class="unit-progress-title">Aktives Zuhören</span>
+                <span class="unit-progress-count">2/3</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 66%;"></div>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chat-messages">
+            <!-- Scenario bubble -->
+            <div class="message scenario clearfix">
+                <div class="scenario-label">Szene</div>
+                <div class="message-bubble">
+                    Frau Meier sitzt am Küchentisch. Als du eintrittst, seufzt sie leise.
+                </div>
+            </div>
+
+            <!-- Dialogue: Frau Meier speaks -->
+            <div class="message coach clearfix">
+                <div class="coach-label" style="color: #8B7355;">Frau Meier</div>
+                <div class="message-bubble" style="background: #f5f0eb;">
+                    "Ach, wissen Sie... manchmal denke ich an früher. Da war alles anders."
+                </div>
+            </div>
+
+            <!-- User response (as Betreuungsperson) -->
+            <div class="message user clearfix">
+                <div class="message-bubble">
+                    Das klingt nachdenklich. Mögen Sie mir davon erzählen?
+                </div>
+            </div>
+
+            <!-- Frau Meier responds -->
+            <div class="message coach clearfix">
+                <div class="coach-label" style="color: #8B7355;">Frau Meier</div>
+                <div class="message-bubble" style="background: #f5f0eb;">
+                    <em>Sie lächelt kurz.</em> "Mein Mann und ich haben hier so viele schöne Jahre verbracht..."
+                </div>
+            </div>
+
+            <!-- User continues -->
+            <div class="message user clearfix">
+                <div class="message-bubble">
+                    Das waren bestimmt wertvolle Erinnerungen.
+                </div>
+            </div>
+
+            <!-- Coach feedback -->
+            <div class="message coach clearfix">
+                <div class="coach-label" style="color: #C96B7E;">Coach</div>
+                <div class="message-bubble">
+                    ✓ Gut! Du spiegelst ihre Gefühle und zeigst Wertschätzung.
+                </div>
+            </div>
+        </div>
+
+        <!-- Help button row -->
+        <div class="help-button-row" id="help-button-row">
+            <button type="button" class="help-pill-button" onclick="toggleHelpMenu()">
+                Frage stellen
+            </button>
+            <div class="help-menu" id="help-menu" style="display: none;">
+                <button class="help-menu-item" onclick="selectHelpOption('explain')">Erklar mir das</button>
+                <div class="help-menu-separator"></div>
+                <button class="help-menu-item" onclick="selectHelpOption('question')">Eigene Frage stellen</button>
+            </div>
+        </div>
+
+        <!-- Chat input -->
+        <div class="chat-input-wrapper">
+            <input type="text" placeholder="Deine Antwort..." id="chat-input">
+            <button class="voice-btn" onclick="alert('Spracherkennung aktiviert...')">
+                <img src="icons/microphone-72.png" alt="Voice">
+            </button>
+            <button class="send-btn" onclick="sendMessage()">
+                <img src="icons/send-72.png" alt="Send" class="icon-white" style="vertical-align: middle;">
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let helpMenuOpen = false;
+
+        function toggleHelpMenu() {
+            const menu = document.getElementById('help-menu');
+            helpMenuOpen = !helpMenuOpen;
+            menu.style.display = helpMenuOpen ? 'block' : 'none';
+        }
+
+        function selectHelpOption(option) {
+            toggleHelpMenu();
+            if (option === 'explain') {
+                alert('Der Coach erklart dir das Thema...');
+            } else {
+                document.getElementById('chat-input').placeholder = 'Deine Frage...';
+                document.getElementById('chat-input').focus();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+
+            if (message) {
+                const messagesContainer = document.getElementById('chat-messages');
+
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'message user clearfix';
+                userMsg.innerHTML = `<div class="message-bubble">${message}</div>`;
+                messagesContainer.appendChild(userMsg);
+
+                // Clear input
+                input.value = '';
+
+                // Scroll to bottom
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                // Simulate coach response
+                setTimeout(() => {
+                    const coachMsg = document.createElement('div');
+                    coachMsg.className = 'message coach clearfix';
+                    coachMsg.innerHTML = `<div class="message-bubble">Das ist eine gute Reaktion! Du zeigst echtes Interesse an ihrer Geschichte.</div>`;
+                    messagesContainer.appendChild(coachMsg);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        // Allow Enter key to send message
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.getElementById('chat-input');
+            if (chatInput) {
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+
+            // Close help menu when clicking outside
+            document.addEventListener('click', function(e) {
+                const helpRow = document.getElementById('help-button-row');
+                if (!helpRow.contains(e.target) && helpMenuOpen) {
+                    toggleHelpMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

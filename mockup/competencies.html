@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine Kompetenzen - KI-Lerncoach</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Override phone-frame for iframe embedding */
+        .phone-frame {
+            max-width: 100%;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            height: 100%;
+            min-height: 100vh;
+        }
+
+        /* Reduce content padding for iframe */
+        .content {
+            padding: 12px !important;
+        }
+
+        .competency-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .competency-card {
+            border-radius: 6px;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            min-width: 0; /* Allow shrinking */
+        }
+
+        .competency-card:hover {
+            transform: scale(1.02);
+        }
+
+        .competency-card.completed {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid #4caf50;
+        }
+
+        .competency-card.in-progress {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe4a3 100%);
+            border: 2px solid #ff9800;
+        }
+
+        .competency-card.not-started {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border: 2px solid #e0e0e0;
+            cursor: default;
+        }
+
+        .competency-card.not-started:hover {
+            transform: none;
+        }
+
+        .card-title {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            word-break: break-word;
+        }
+
+        .competency-card.not-started .card-title {
+            color: #999;
+        }
+
+        .card-icon {
+            font-size: 20px;
+            margin: 6px 0;
+        }
+
+        .card-status {
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .card-status.completed {
+            color: #4caf50;
+        }
+
+        .card-status.in-progress {
+            color: #ff9800;
+        }
+
+        .card-status.not-started {
+            color: #999;
+        }
+
+        .progress-summary {
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .progress-summary.partial {
+            background: #fce8eb;
+        }
+
+        .progress-summary.complete {
+            background: #c8e6c9;
+        }
+
+        /* Smaller button for iframe */
+        .btn {
+            padding: 10px !important;
+            font-size: 14px !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- User Toggle Buttons -->
+    <div class="user-toggle">
+        <a href="index.html" class="user-toggle-btn active">Betreuer</a>
+        <a href="admin.html" class="user-toggle-btn">Admin</a>
+    </div>
+    <div class="phone-frame">
+        <div class="header">
+            <a href="dashboard.html" class="menu-icon" style="text-decoration: none; color: inherit;">
+                <img src="icons/back-72.png" alt="Back" class="icon-white" style="vertical-align: middle;">
+            </a>
+            <h1>Meine Kompetenzen</h1>
+            <span class="lang-selector">
+                <img src="icons/language-72.png" alt="Language" class="icon-white" style="vertical-align: middle;"> DE
+            </span>
+        </div>
+        <div class="content">
+            <!-- Kompetenz-Grid (2 Spalten) -->
+            <div class="competency-grid">
+                <!-- K1: Berufliches Selbstverständnis - Abgeschlossen -->
+                <div class="competency-card completed" onclick="showDetails('K1')">
+                    <div class="card-title">Berufliches</div>
+                    <div class="card-icon" style="color: #4caf50;">✓</div>
+                    <div class="card-status completed">Abgeschlossen</div>
+                </div>
+
+                <!-- K2: Kommunikation - In Bearbeitung -->
+                <div class="competency-card in-progress" onclick="showDetails('K2')">
+                    <div class="card-title">Kommunikation</div>
+                    <div class="card-icon" style="color: #ff9800;">⏸</div>
+                    <div class="card-status in-progress">In Bearbeitung</div>
+                </div>
+
+                <!-- K3: Gesprächsführung - Nicht begonnen -->
+                <div class="competency-card not-started">
+                    <div class="card-title">Gesprächsführung</div>
+                    <div class="card-icon" style="color: #999;">○</div>
+                    <div class="card-status not-started">Nicht begonnen</div>
+                </div>
+
+                <!-- K4: Krisenintervention - Nicht begonnen -->
+                <div class="competency-card not-started">
+                    <div class="card-title">Krisenintervention</div>
+                    <div class="card-icon" style="color: #999;">○</div>
+                    <div class="card-status not-started">Nicht begonnen</div>
+                </div>
+            </div>
+
+            <!-- Fortschritts-Zusammenfassung -->
+            <div class="progress-summary partial">
+                <strong>1 von 4 Bereichen abgeschlossen</strong>
+            </div>
+
+            <!-- Zertifikat-Button -->
+            <button class="btn" style="opacity: 0.5;" disabled>
+                Zertifikat herunterladen
+            </button>
+            <p style="text-align: center; color: #6c757d; font-size: 12px; margin-top: 5px;">
+                (verfügbar ab 4/4 abgeschlossen)
+            </p>
+        </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div id="details-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: white; border-radius: 12px; padding: 20px; max-width: 90%; width: 340px; max-height: 80%; overflow: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h3 style="margin: 0; font-size: 16px;" id="modal-title">Berufliches Selbstverständnis</h3>
+                <button onclick="closeDetails()" style="background: none; border: none; font-size: 20px; cursor: pointer; padding: 4px;">×</button>
+            </div>
+            <div id="modal-content">
+                <!-- Sub-competencies will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const competencyData = {
+            'K1': {
+                name: 'Berufliches Selbstverständnis',
+                subs: [
+                    { name: 'Haltung', level: 3 },
+                    { name: 'Menschenbild', level: 4 },
+                    { name: 'Rolle & Grenzen', level: 2 },
+                    { name: 'Ethik', level: 3 }
+                ]
+            },
+            'K2': {
+                name: 'Kommunikation & Beziehung',
+                subs: [
+                    { name: 'Empathie', level: 2 },
+                    { name: 'Haltung', level: 3 },
+                    { name: 'Konflikte', level: 2 }
+                ]
+            }
+        };
+
+        function showDetails(id) {
+            const data = competencyData[id];
+            if (!data) return;
+
+            document.getElementById('modal-title').textContent = data.name;
+
+            let html = '';
+            data.subs.forEach((sub, i) => {
+                const isStrength = sub.level >= 3;
+                const isLast = i === data.subs.length - 1;
+                html += `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; ${isLast ? '' : 'border-bottom: 1px solid #eee;'}">
+                        <span style="font-size: 14px;">${sub.name}</span>
+                        <span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; background: ${isStrength ? '#4caf50' : '#ff9800'}; color: white;">
+                            <span>${isStrength ? '✓' : '↗'}</span>
+                            <span>${isStrength ? 'Sicher' : 'Lernbereich'}</span>
+                        </span>
+                    </div>
+                `;
+            });
+
+            document.getElementById('modal-content').innerHTML = html;
+            document.getElementById('details-modal').style.display = 'flex';
+        }
+
+        function closeDetails() {
+            document.getElementById('details-modal').style.display = 'none';
+        }
+
+        // Close modal when clicking backdrop
+        document.getElementById('details-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeDetails();
+        });
+    </script>
+</body>
+</html>
