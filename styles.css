@@ -46,6 +46,28 @@ body {
     position: relative;
 }
 
+.hero-partners-top {
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #999;
+}
+
+.hero-partners-top img {
+    height: 28px;
+    background: white;
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+
+.hero-partners-top img[alt="Entlastungsdienst Bern"] {
+    height: 56px;
+}
+
 .hero-content {
     position: relative;
     z-index: 1;
@@ -521,6 +543,15 @@ body {
     font-size: 13px;
     color: #666;
     line-height: 1.8;
+}
+
+.footer-legal a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+.footer-legal a:hover {
+    color: #fff;
 }
 
 /* Responsive */
