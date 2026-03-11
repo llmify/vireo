@@ -23,6 +23,10 @@
         <div class="hero-content">
             <img src="logos/vireo-logo.png" alt="Vireo - Human Empowerment" class="hero-logo">
             <p>Interaktive Kompetenzentwicklung im Sozialbereich</p>
+            <button class="play-button" onclick="document.getElementById('video-lightbox').classList.add('active')">
+                <svg viewBox="0 0 24 24" fill="white" width="32" height="32"><polygon points="5,3 19,12 5,21"/></svg>
+                <span>Video ansehen</span>
+            </button>
         </div>
         <a href="#assessment" class="scroll-hint">
             Entdecke die Features
@@ -30,12 +34,13 @@
         </a>
     </section>
 
-    <!-- Video -->
-    <section class="video-section">
-        <div class="video-container">
+    <!-- Video Lightbox -->
+    <div id="video-lightbox" class="video-lightbox" onclick="this.classList.remove('active'); this.querySelector('iframe').src = this.querySelector('iframe').src;">
+        <div class="video-lightbox-content" onclick="event.stopPropagation()">
+            <button class="video-lightbox-close" onclick="var lb = document.getElementById('video-lightbox'); lb.classList.remove('active'); lb.querySelector('iframe').src = lb.querySelector('iframe').src;">&times;</button>
             <iframe src="https://www.youtube-nocookie.com/embed/6srvF7WGTq4" title="Vireo – KI-Lerncoach" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-    </section>
+    </div>
 
     <!-- Feature Nav -->
     <nav class="feature-nav">
