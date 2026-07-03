@@ -30,10 +30,10 @@
     <section class="hero">
         <div class="hero-inner">
             <div class="hero-copy">
-                <h1>Kompetenzentwicklung, die im Betreuungsalltag ankommt.</h1>
-                <p>Vireo ist der KI-Lerncoach für Fachpersonen im Sozialbereich: Kompetenz-Assessment, personalisierte Lernpfade und geführte Reflexion – aufgebaut auf dem Kompetenzmodell Ihrer Organisation.</p>
+                <h1>Weiterbildung, die Betreuungspersonen dort abholt, wo sie stehen.</h1>
+                <p>Viele Betreuungspersonen starten ohne formale Ausbildung – und klassische Kurse passen nicht in ihren Alltag. Vireo, der KI-Lerncoach für den Sozialbereich, passt sich jeder Person an: mit Kompetenz-Assessment, persönlichem Lernpfad und geführter Reflexion.</p>
                 <div class="hero-actions">
-                    <button class="play-button" onclick="document.getElementById('video-lightbox').classList.add('active')">
+                    <button class="play-button" onclick="openVideo()">
                         <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><polygon points="5,3 19,12 5,21"/></svg>
                         <span>Video ansehen</span>
                     </button>
@@ -50,10 +50,10 @@
     </section>
 
     <!-- Video Lightbox -->
-    <div id="video-lightbox" class="video-lightbox" onclick="this.classList.remove('active'); this.querySelector('iframe').src = this.querySelector('iframe').src;">
+    <div id="video-lightbox" class="video-lightbox" onclick="closeVideo()">
         <div class="video-lightbox-content" onclick="event.stopPropagation()">
-            <button class="video-lightbox-close" onclick="var lb = document.getElementById('video-lightbox'); lb.classList.remove('active'); lb.querySelector('iframe').src = lb.querySelector('iframe').src;">&times;</button>
-            <iframe src="https://www.youtube-nocookie.com/embed/6srvF7WGTq4" title="Vireo – KI-Lerncoach" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <button class="video-lightbox-close" onclick="closeVideo()">&times;</button>
+            <iframe src="" data-src="https://www.youtube-nocookie.com/embed/6srvF7WGTq4" title="Vireo – KI-Lerncoach" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
 
@@ -172,7 +172,7 @@
     </div>
 
     <!-- ==================== REFLEXION ==================== -->
-    <div id="reflexion" class="module surface-sage">
+    <div id="reflexion" class="module surface-blush">
         <div class="section-intro">
             <span class="eyebrow">Für Mitarbeitende</span>
             <h2>Reflexion</h2>
@@ -198,7 +198,7 @@
     </div>
 
     <!-- ==================== KOORDINATION ==================== -->
-    <div id="koordination" class="module surface-blush">
+    <div id="koordination" class="module">
         <div class="section-intro">
             <span class="eyebrow">Für Teamleitende</span>
             <h2>Koordination</h2>
@@ -291,6 +291,52 @@
     </footer>
 
     <script>
+        // Video lightbox: load with autoplay on open, unload on close
+        function openVideo() {
+            const lb = document.getElementById('video-lightbox');
+            const frame = lb.querySelector('iframe');
+            frame.src = frame.dataset.src + '?autoplay=1';
+            lb.classList.add('active');
+        }
+
+        function closeVideo() {
+            const lb = document.getElementById('video-lightbox');
+            lb.classList.remove('active');
+            lb.querySelector('iframe').src = '';
+        }
+
+        // Hero mockup: clicks jump to the matching section instead of
+        // navigating inside the mockup app
+        const heroFrame = document.querySelector('.hero-demo iframe');
+        const heroTargets = {
+            'assessment.html': '#assessment',
+            'learning-path.html': '#lernpfad',
+            'reflexion_chat.html': '#reflexion',
+            'competencies.html': '#assessment'
+        };
+
+        function bindHeroFrame() {
+            let doc;
+            try {
+                doc = heroFrame.contentDocument;
+            } catch (e) {
+                return;
+            }
+            if (!doc) return;
+            doc.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const link = e.target.closest('a');
+                const target = link && heroTargets[link.getAttribute('href')];
+                if (target) {
+                    document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
+                }
+            }, true);
+        }
+
+        heroFrame.addEventListener('load', bindHeroFrame);
+        bindHeroFrame();
+
         // Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

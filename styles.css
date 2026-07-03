@@ -27,7 +27,6 @@
     --rose-deep: #A93E55;
     --rose-light: #E3A5B4;
     --blush: #F9ECEF;
-    --sage: #EDF2EA;
     --line: #E3E9E1;
     --paper: #FFFFFF;
     --display: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif;
@@ -184,8 +183,8 @@ body {
 }
 
 .btn-secondary:hover {
-    background: var(--sage);
-    border-color: var(--sage);
+    background: var(--blush);
+    border-color: var(--blush);
 }
 
 /* ==========================================================================
@@ -269,6 +268,10 @@ body {
     color: var(--ink);
 }
 
+.section-mockup iframe {
+    pointer-events: none;
+}
+
 .feature-nav a.active {
     color: var(--ink);
     border-bottom-color: var(--rose);
@@ -287,10 +290,6 @@ body {
 
 .surface-blush {
     background: var(--blush);
-}
-
-.surface-sage {
-    background: var(--sage);
 }
 
 .section-intro {
@@ -484,7 +483,7 @@ body {
 
 .pricing-section {
     padding: 96px 20px 80px;
-    background: var(--paper);
+    background: var(--blush);
 }
 
 .pricing-intro {
@@ -525,8 +524,7 @@ body {
 }
 
 .pricing-card.featured {
-    background: var(--blush);
-    border-color: var(--blush);
+    border: 1.5px solid var(--rose);
 }
 
 .pricing-card-label {
@@ -610,7 +608,7 @@ body {
 .addon-card {
     flex: 1;
     max-width: 280px;
-    background: var(--sage);
+    background: var(--paper);
     border-radius: 16px;
     padding: 24px 22px;
 }
@@ -632,7 +630,7 @@ body {
    ========================================================================== */
 
 .footer {
-    background: var(--sage);
+    background: var(--paper);
     color: var(--ink);
     padding: 90px 20px 60px;
     text-align: center;
@@ -673,7 +671,7 @@ body {
 .footer-legal {
     margin-top: 56px;
     padding-top: 28px;
-    border-top: 1px solid #DCE3D9;
+    border-top: 1px solid var(--line);
     font-size: 13px;
     color: var(--muted-text);
     line-height: 1.8;
