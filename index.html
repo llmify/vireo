@@ -16,24 +16,37 @@
     <link rel="icon" type="image/png" sizes="48x48" href="logos/favicon-48.png">
     <link rel="icon" type="image/png" sizes="192x192" href="logos/favicon-192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="logos/favicon-32.png">
+    <link rel="preload" href="fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <!-- Hero -->
+    <header class="site-header">
+        <img src="logos/vireo-logo.png" alt="Vireo - Human Empowerment" class="site-logo">
+    </header>
+
     <section class="hero">
-        <div class="hero-content">
-            <img src="logos/vireo-logo.png" alt="Vireo - Human Empowerment" class="hero-logo">
-            <p>Interaktive Kompetenzentwicklung im Sozialbereich</p>
-            <button class="play-button" onclick="document.getElementById('video-lightbox').classList.add('active')">
-                <svg viewBox="0 0 24 24" fill="white" width="32" height="32"><polygon points="5,3 19,12 5,21"/></svg>
-                <span>Video ansehen</span>
-            </button>
+        <div class="hero-inner">
+            <div class="hero-copy">
+                <h1>Kompetenzentwicklung, die im Betreuungsalltag ankommt.</h1>
+                <p>Vireo ist der KI-Lerncoach für Fachpersonen im Sozialbereich: Kompetenz-Assessment, personalisierte Lernpfade und geführte Reflexion – aufgebaut auf dem Kompetenzmodell Ihrer Organisation.</p>
+                <div class="hero-actions">
+                    <button class="play-button" onclick="document.getElementById('video-lightbox').classList.add('active')">
+                        <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><polygon points="5,3 19,12 5,21"/></svg>
+                        <span>Video ansehen</span>
+                    </button>
+                    <a href="#pakete" class="btn-secondary">Pakete ansehen</a>
+                </div>
+                <p class="hero-trust">Ein Projekt von <a href="https://www.entlastungsdienst.ch" target="_blank">Entlastungsdienst Schweiz</a> und <a href="https://llmify.ch" target="_blank">LLMify AG</a></p>
+            </div>
+            <div class="hero-demo">
+                <div class="phone-frame">
+                    <iframe src="mockup/dashboard.html" title="Vireo App"></iframe>
+                </div>
+            </div>
         </div>
-        <a href="#assessment" class="scroll-hint">
-            Entdecke die Features
-            <span>&#8595;</span>
-        </a>
     </section>
 
     <!-- Video Lightbox -->
@@ -55,8 +68,9 @@
     </nav>
 
     <!-- ==================== ASSESSMENT ==================== -->
-    <div id="assessment" class="gradient-section bg-gradient-1">
+    <div id="assessment" class="module surface-blush">
         <div class="section-intro">
+            <span class="eyebrow">Für Mitarbeitende</span>
             <h2>Kompetenz-Assessment</h2>
             <p>Die KI führt ein strukturiertes Gespräch und bewertet anhand des von der Organisation definierten Kompetenzmodells. Nachvollziehbar und kriterienbasiert.</p>
         </div>
@@ -98,8 +112,9 @@
     </div>
 
     <!-- ==================== LERNPFAD ==================== -->
-    <div id="lernpfad" class="gradient-section bg-gradient-2">
+    <div id="lernpfad" class="module">
         <div class="section-intro">
+            <span class="eyebrow">Für Mitarbeitende</span>
             <h2>Personalisierter Lernpfad</h2>
             <p>Basierend auf den Assessment-Ergebnissen wird ein individueller Lernplan mit priorisierten Fokusthemen erstellt.</p>
         </div>
@@ -157,8 +172,9 @@
     </div>
 
     <!-- ==================== REFLEXION ==================== -->
-    <div id="reflexion" class="gradient-section bg-gradient-1">
+    <div id="reflexion" class="module surface-sage">
         <div class="section-intro">
+            <span class="eyebrow">Für Mitarbeitende</span>
             <h2>Reflexion</h2>
             <p>Ein geschützter Raum, um Erlebnisse aus dem Betreuungsalltag zu verarbeiten und daraus zu lernen.</p>
         </div>
@@ -182,8 +198,9 @@
     </div>
 
     <!-- ==================== KOORDINATION ==================== -->
-    <div id="koordination" class="gradient-section bg-gradient-2">
+    <div id="koordination" class="module surface-blush">
         <div class="section-intro">
+            <span class="eyebrow">Für Teamleitende</span>
             <h2>Koordination</h2>
             <p>Teamleitende behalten den Überblick und können Fortschritte auswerten.</p>
         </div>
@@ -266,7 +283,7 @@
     <footer class="footer">
         <h2>Bereit für den nächsten Schritt?</h2>
         <p>Kontaktieren Sie uns für ein unverbindliches Gespräch.</p>
-        <a href="mailto:kontakt@vireo-empower.ch" style="color: #ddd; text-decoration: none; font-size: 18px;">kontakt@vireo-empower.ch</a>
+        <a href="mailto:kontakt@vireo-empower.ch" class="footer-cta">kontakt@vireo-empower.ch</a>
         <div class="footer-legal">
             Ein Projekt von <a href="https://www.entlastungsdienst.ch" target="_blank">Entlastungsdienst Schweiz</a> und <a href="https://llmify.ch" target="_blank">LLMify AG</a><br>
             Vireo | Human Empowerment | 2026
@@ -290,7 +307,7 @@
         // Feature nav: active section highlight
         const nav = document.querySelector('.feature-nav');
         const navLinks = nav.querySelectorAll('a');
-        const sections = document.querySelectorAll('.gradient-section[id], .pricing-section[id]');
+        const sections = document.querySelectorAll('.module[id], .pricing-section[id]');
 
         window.addEventListener('scroll', () => {
             let current = '';
