@@ -16,6 +16,30 @@
             height: 100%;
             min-height: 100vh;
         }
+
+        /* Make the dashboard cards read as tappable */
+        .content a.card {
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .content a.card::after {
+            content: "›";
+            margin-left: auto;
+            font-size: 26px;
+            line-height: 1;
+            color: var(--rose);
+            transition: transform 0.2s ease;
+        }
+
+        .content a.card:hover {
+            border-color: var(--rose-light);
+            box-shadow: 0 6px 16px rgba(196, 80, 106, 0.14);
+            transform: translateY(-2px);
+        }
+
+        .content a.card:hover::after {
+            transform: translateX(3px);
+        }
     </style>
 </head>
 <body>
