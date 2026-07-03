@@ -416,10 +416,10 @@ body {
 
 /* Device frames — straight-on, flat */
 .phone-frame {
-    width: 300px;
+    width: 322px;
     background: #22301F;
-    border-radius: 40px;
-    padding: 11px;
+    border-radius: 34px;
+    padding: 7px;
     box-shadow:
         0 24px 48px rgba(31, 61, 36, 0.18),
         0 0 0 1px rgba(255, 255, 255, 0.08) inset;
@@ -427,9 +427,9 @@ body {
 
 .phone-frame iframe {
     width: 100%;
-    height: 580px;
+    height: 600px;
     border: none;
-    border-radius: 30px;
+    border-radius: 28px;
     background: white;
     display: block;
 }
@@ -515,8 +515,8 @@ body {
 }
 
 .pricing-card.featured {
-    background: var(--ink);
-    border-color: var(--ink);
+    background: var(--blush);
+    border-color: var(--blush);
 }
 
 .pricing-card-label {
@@ -529,7 +529,7 @@ body {
 }
 
 .pricing-card.featured .pricing-card-label {
-    color: var(--rose-light);
+    color: var(--rose);
 }
 
 .pricing-card h3 {
@@ -540,9 +540,6 @@ body {
     margin-bottom: 8px;
 }
 
-.pricing-card.featured h3 {
-    color: #fff;
-}
 
 .pricing-card-desc {
     font-size: 14px;
@@ -550,9 +547,6 @@ body {
     margin-bottom: 20px;
 }
 
-.pricing-card.featured .pricing-card-desc {
-    color: rgba(255, 255, 255, 0.78);
-}
 
 .pricing-features {
     list-style: none;
@@ -567,9 +561,6 @@ body {
     gap: 10px;
 }
 
-.pricing-card.featured .pricing-features li {
-    color: rgba(255, 255, 255, 0.92);
-}
 
 .pricing-features li::before {
     content: "\2713";
@@ -578,9 +569,6 @@ body {
     flex-shrink: 0;
 }
 
-.pricing-card.featured .pricing-features li::before {
-    color: var(--rose-light);
-}
 
 .pricing-features li.muted {
     color: var(--muted-text);
@@ -634,8 +622,8 @@ body {
    ========================================================================== */
 
 .footer {
-    background: var(--ink);
-    color: white;
+    background: var(--sage);
+    color: var(--ink);
     padding: 90px 20px 60px;
     text-align: center;
 }
@@ -649,7 +637,7 @@ body {
 }
 
 .footer p {
-    color: rgba(255, 255, 255, 0.72);
+    color: var(--body-text);
     max-width: 600px;
     margin: 0 auto 32px;
     font-size: 18px;
@@ -675,19 +663,19 @@ body {
 .footer-legal {
     margin-top: 56px;
     padding-top: 28px;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: 1px solid #DCE3D9;
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--muted-text);
     line-height: 1.8;
 }
 
 .footer-legal a {
-    color: rgba(255, 255, 255, 0.78);
+    color: var(--body-text);
     text-decoration: none;
 }
 
 .footer-legal a:hover {
-    color: #fff;
+    color: var(--ink);
 }
 
 /* ==========================================================================
@@ -772,11 +760,11 @@ body {
 
 @media (max-width: 600px) {
     .phone-frame {
-        width: 270px;
+        width: 292px;
     }
 
     .phone-frame iframe {
-        height: 540px;
+        height: 560px;
     }
 
     .feature-nav {
