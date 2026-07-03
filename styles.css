@@ -420,10 +420,7 @@ body {
     width: 322px;
     background: #22301F;
     border-radius: 34px;
-    padding: 7px;
-    box-shadow:
-        0 24px 48px rgba(31, 61, 36, 0.18),
-        0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+    box-shadow: 0 24px 48px rgba(31, 61, 36, 0.18);
 }
 
 .phone-frame::after {
@@ -440,9 +437,9 @@ body {
 
 .phone-frame iframe {
     width: 100%;
-    height: 600px;
-    border: none;
-    border-radius: 28px;
+    height: 614px;
+    border: 7px solid #22301F;
+    border-radius: 34px;
     background: white;
     display: block;
 }
@@ -777,7 +774,7 @@ body {
     }
 
     .phone-frame iframe {
-        height: 560px;
+        height: 574px;
     }
 
     .feature-nav {
