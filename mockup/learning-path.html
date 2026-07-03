@@ -27,12 +27,12 @@
         }
 
         .focus-area-card.priority {
-            background: var(--blush);
-            border: 1px solid var(--rose);
+            background: linear-gradient(135deg, #fff8e7 0%, #fff3cd 100%);
+            border: 1px solid #ffa500;
         }
 
         .focus-area-card.priority.selected {
-            background: var(--blush);
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe4a3 100%);
         }
 
         .focus-area-card.normal {
@@ -41,7 +41,7 @@
         }
 
         .focus-area-card.normal.selected {
-            background: var(--sage);
+            background: #f8f9fa;
             border: 1px solid var(--rose);
         }
 
@@ -59,7 +59,7 @@
 
         .focus-area-parent {
             font-size: 11px;
-            color: var(--muted-text);
+            color: #666;
             margin-top: 2px;
         }
 
@@ -67,8 +67,8 @@
             font-size: 9px;
             font-weight: 700;
             text-transform: uppercase;
-            color: var(--rose);
-            background: var(--blush);
+            color: #e65100;
+            background: rgba(230, 81, 0, 0.1);
             padding: 2px 6px;
             border-radius: 4px;
         }
@@ -102,17 +102,17 @@
         }
 
         .timeline-dot.completed {
-            border-color: var(--ink);
-            background: var(--ink);
+            border-color: #555;
+            background: #555;
         }
 
         .timeline-dot.current {
-            border-color: var(--ink);
-            background: linear-gradient(to right, var(--ink) 50%, transparent 50%);
+            border-color: #555;
+            background: linear-gradient(to right, #555 50%, transparent 50%);
         }
 
         .timeline-dot.pending {
-            border-color: var(--line);
+            border-color: #ccc;
             background: transparent;
         }
 
@@ -123,7 +123,7 @@
         }
 
         .timeline-line.completed {
-            background: var(--ink);
+            background: #555;
         }
 
         .timeline-line.pending {
@@ -136,16 +136,16 @@
         }
 
         .timeline-label.completed {
-            color: var(--ink);
+            color: #555;
         }
 
         .timeline-label.current {
-            color: var(--ink);
+            color: #555;
             font-weight: 500;
         }
 
         .timeline-label.pending {
-            color: var(--muted-text);
+            color: #666;
         }
 
         .focus-area-button {
@@ -160,7 +160,7 @@
         }
 
         .focus-area-button.priority {
-            background: var(--rose);
+            background: #e65100;
             color: white;
         }
 
@@ -171,16 +171,16 @@
 
         .focus-area-button.complete {
             background: var(--success-bg);
-            color: var(--success);
-            border: 1px solid var(--success);
+            color: #4caf50;
+            border: 1px solid #4caf50;
             cursor: default;
         }
 
         /* Summary box */
         .lernpfad-summary-box {
             padding: 14px 16px;
-            background: var(--sage);
-            border: 1px solid var(--line);
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 100%);
+            border: 1px solid #d0e3f0;
             border-radius: 10px;
             margin-bottom: 20px;
         }
@@ -188,7 +188,7 @@
         .summary-label {
             font-size: 11px;
             font-weight: 600;
-            color: var(--muted-text);
+            color: #5a7a9a;
             margin-bottom: 4px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -196,7 +196,7 @@
 
         .summary-text {
             font-size: 14px;
-            color: var(--body-text);
+            color: #334155;
             line-height: 1.4;
         }
 
@@ -216,14 +216,14 @@
 
         .lernpfad-meta {
             font-size: 10px;
-            color: var(--muted-text);
+            color: #999;
             margin-bottom: 8px;
         }
 
         .regenerate-link {
             background: transparent;
             border: none;
-            color: var(--muted-text);
+            color: #999;
             font-size: 11px;
             cursor: pointer;
             text-decoration: underline;

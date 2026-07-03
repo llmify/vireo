@@ -1,10 +1,12 @@
 /*
- * Vireo – Produkt-UI Design-Tokens (abgeleitet vom Logo / Landingpage)
- * Ink (Waldgrün):  #1F3D24   Body: #46524A   Muted: #75816F
- * Rose (Akzent):   #C4506A   Hover: #A93E55   Hell: #E3A5B4
- * Flächen:         Blush #F9ECEF   Sage #EDF2EA   Weiss
- * Hairline:        #E3E9E1
- * Semantik (getönt): Success #1F3D24  Warn #C98A2E  Danger #C0392B
+ * Farbpalette basierend auf Entlastungsdienst Logo:
+ * Primary: #C4506A (Rose-Akzent aus Brand-Refresh)
+ * Success: #28a745 (Grün für erfüllte Kompetenzen)
+ * Warning: #ffa500 (Orange für in Arbeit)
+ * Neutral: #6c757d (Grau)
+ * Background: #f8f9fa (Hellgrau)
+ * Light Rose: #F9ECEF (Hintergrund für Info-Boxen)
+ * Typografie (Brand-Refresh): Bricolage Grotesque (Display) / Figtree (Text)
  */
 
 @font-face {
@@ -22,24 +24,24 @@
 }
 
 :root {
-    --ink: #1F3D24;
-    --ink-soft: #2C4A31;
-    --body-text: #46524A;
-    --muted-text: #75816F;
+    --ink: #333;
+    --ink-soft: #2c2c2c;
+    --body-text: #333;
+    --muted-text: #6c757d;
     --rose: #C4506A;
     --rose-deep: #A93E55;
     --rose-light: #E3A5B4;
     --blush: #F9ECEF;
-    --sage: #EDF2EA;
-    --line: #E3E9E1;
+    --sage: #e9ecef;
+    --line: #e0e0e0;
     --paper: #FFFFFF;
-    --surface: #F6F8F4;
-    --success: #1F3D24;
-    --success-bg: #EDF2EA;
-    --warn: #C98A2E;
-    --warn-bg: #F6ECD9;
-    --danger: #C0392B;
-    --danger-bg: #F7E7E4;
+    --surface: #f8f9fa;
+    --success: #28a745;
+    --success-bg: #e8f5e9;
+    --warn: #ffa500;
+    --warn-bg: #fff3e0;
+    --danger: #dc3545;
+    --danger-bg: #ffebee;
     --display: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif;
     --text: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
@@ -170,7 +172,7 @@ body {
     font-weight: 700;
     letter-spacing: -0.01em;
     font-size: 28px;
-    color: var(--ink);
+    color: var(--rose);
     margin-bottom: 10px;
 }
 
@@ -199,7 +201,7 @@ body {
 select, input, textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid var(--line);
+    border: 1px solid #ddd;
     border-radius: 10px;
     font-size: 16px;
 }
@@ -335,7 +337,7 @@ select, input, textarea {
     display: flex;
     padding: 10px;
     background: white;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid #ddd;
 }
 
 .chat-input input {
