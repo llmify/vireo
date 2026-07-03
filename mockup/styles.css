@@ -1,12 +1,48 @@
 /*
- * Farbpalette basierend auf Entlastungsdienst Logo:
- * Primary: #C96B7E (Rot aus Logo - heller)
- * Success: #28a745 (Grün für erfüllte Kompetenzen)
- * Warning: #ffa500 (Orange für in Arbeit)
- * Neutral: #6c757d (Grau)
- * Background: #f8f9fa (Hellgrau)
- * Light Pink: #fce8eb (Hintergrund für Info-Boxen)
+ * Vireo – Produkt-UI Design-Tokens (abgeleitet vom Logo / Landingpage)
+ * Ink (Waldgrün):  #1F3D24   Body: #46524A   Muted: #75816F
+ * Rose (Akzent):   #C4506A   Hover: #A93E55   Hell: #E3A5B4
+ * Flächen:         Blush #F9ECEF   Sage #EDF2EA   Weiss
+ * Hairline:        #E3E9E1
+ * Semantik (getönt): Success #1F3D24  Warn #C98A2E  Danger #C0392B
  */
+
+@font-face {
+    font-family: 'Bricolage Grotesque';
+    src: url('../fonts/bricolage-grotesque-latin.woff2') format('woff2');
+    font-weight: 200 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Figtree';
+    src: url('../fonts/figtree-latin.woff2') format('woff2');
+    font-weight: 300 900;
+    font-display: swap;
+}
+
+:root {
+    --ink: #1F3D24;
+    --ink-soft: #2C4A31;
+    --body-text: #46524A;
+    --muted-text: #75816F;
+    --rose: #C4506A;
+    --rose-deep: #A93E55;
+    --rose-light: #E3A5B4;
+    --blush: #F9ECEF;
+    --sage: #EDF2EA;
+    --line: #E3E9E1;
+    --paper: #FFFFFF;
+    --surface: #F6F8F4;
+    --success: #1F3D24;
+    --success-bg: #EDF2EA;
+    --warn: #C98A2E;
+    --warn-bg: #F6ECD9;
+    --danger: #C0392B;
+    --danger-bg: #F7E7E4;
+    --display: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif;
+    --text: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
 
 * {
     margin: 0;
@@ -15,9 +51,14 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+    font-family: var(--text);
+    background-color: var(--surface);
+    color: var(--body-text);
+}
+
+:focus-visible {
+    outline: 2px solid var(--rose);
+    outline-offset: 2px;
 }
 
 /* User Toggle Buttons */
@@ -51,9 +92,9 @@ body {
 .user-toggle-btn {
     padding: 10px 20px;
     background: white;
-    border: 2px solid #C96B7E;
-    border-radius: 8px;
-    color: #C96B7E;
+    border: 2px solid var(--rose);
+    border-radius: 10px;
+    color: var(--rose);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -64,12 +105,12 @@ body {
 }
 
 .user-toggle-btn:hover {
-    background: #C96B7E;
+    background: var(--rose);
     color: white;
 }
 
 .user-toggle-btn.active {
-    background: #C96B7E;
+    background: var(--rose);
     color: white;
 }
 
@@ -88,7 +129,7 @@ body {
 
 /* Header */
 .header {
-    background: #C96B7E;
+    background: var(--rose);
     color: white;
     padding: 35px 15px 15px 15px;  /* change for adjusted padding in header */
     display: flex;
@@ -125,8 +166,11 @@ body {
 }
 
 .logo h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
     font-size: 28px;
-    color: #C96B7E;
+    color: var(--ink);
     margin-bottom: 10px;
 }
 
@@ -137,7 +181,7 @@ body {
 }
 
 .logo p {
-    color: #6c757d;
+    color: var(--muted-text);
     font-size: 14px;
 }
 
@@ -149,24 +193,24 @@ body {
     display: block;
     margin-bottom: 8px;
     font-size: 14px;
-    color: #6c757d;
+    color: var(--muted-text);
 }
 
 select, input, textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
     font-size: 16px;
 }
 
 .btn {
     width: 100%;
     padding: 14px;
-    background: #C96B7E;
+    background: var(--rose);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -175,11 +219,11 @@ select, input, textarea {
 }
 
 .btn:active {
-    background: #B35968;
+    background: var(--rose-deep);
 }
 
 .btn-secondary {
-    background: #6c757d;
+    background: var(--muted-text);
 }
 
 .btn-secondary:active {
@@ -189,7 +233,7 @@ select, input, textarea {
 /* Dashboard Cards */
 .card {
     background: white;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--line);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 15px;
@@ -198,7 +242,7 @@ select, input, textarea {
 }
 
 .card:active {
-    background: #f8f9fa;
+    background: var(--surface);
 }
 
 .card-icon {
@@ -213,7 +257,7 @@ select, input, textarea {
 }
 
 .card-action {
-    color: #C96B7E;
+    color: var(--rose);
     font-size: 14px;
 }
 
@@ -222,7 +266,7 @@ select, input, textarea {
     flex: 1;
     overflow-y: auto;
     padding: 10px;
-    background: #f8f9fa;
+    background: var(--surface);
 }
 
 .message {
@@ -237,15 +281,15 @@ select, input, textarea {
 }
 
 .message.coach .message-bubble {
-    background: #e9ecef;
-    color: #333;
+    background: var(--sage);
+    color: var(--ink);
     float: left;
     clear: both;
     border-bottom-left-radius: 4px;
 }
 
 .message.user .message-bubble {
-    background: #C96B7E;
+    background: var(--rose);
     color: white;
     float: right;
     clear: both;
@@ -254,7 +298,7 @@ select, input, textarea {
 
 .message-time {
     font-size: 11px;
-    color: #6c757d;
+    color: var(--muted-text);
     clear: both;
     display: block;
     padding: 0 5px;
@@ -291,7 +335,7 @@ select, input, textarea {
     display: flex;
     padding: 10px;
     background: white;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--line);
 }
 
 .chat-input input {
@@ -303,10 +347,10 @@ select, input, textarea {
     width: 44px;
     min-width: 44px;
     padding: 10px;
-    background: #C96B7E;
+    background: var(--rose);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 18px;
 }
@@ -314,7 +358,7 @@ select, input, textarea {
 /* Competency Results */
 .competency-item {
     background: white;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--line);
     border-radius: 12px;
     padding: 15px;
     margin-bottom: 15px;
@@ -337,7 +381,7 @@ select, input, textarea {
 }
 
 .progress-bar {
-    background: #e0e0e0;
+    background: var(--line);
     height: 8px;
     border-radius: 4px;
     overflow: hidden;
@@ -345,24 +389,24 @@ select, input, textarea {
 }
 
 .progress-fill {
-    background: #28a745;
+    background: var(--success);
     height: 100%;
     transition: width 0.3s;
 }
 
 .progress-fill.warning {
-    background: #ffa500;
+    background: var(--warn);
 }
 
 .progress-text {
     font-size: 14px;
-    color: #6c757d;
+    color: var(--muted-text);
 }
 
 /* Info Box */
 .info-box {
-    background: #fce8eb;
-    border-left: 4px solid #C96B7E;
+    background: var(--blush);
+    border-left: 4px solid var(--rose);
     padding: 15px;
     margin: 20px 0;
     border-radius: 4px;
@@ -384,7 +428,7 @@ select, input, textarea {
 
 /* Certificate */
 .certificate {
-    border: 3px solid #C96B7E;
+    border: 3px solid var(--rose);
     padding: 30px;
     margin: 20px 0;
     text-align: center;
@@ -395,7 +439,7 @@ select, input, textarea {
 .certificate h2 {
     font-size: 24px;
     margin: 20px 0;
-    color: #C96B7E;
+    color: var(--rose);
 }
 
 .certificate .name {
@@ -405,7 +449,7 @@ select, input, textarea {
 }
 
 .certificate .date {
-    color: #6c757d;
+    color: var(--muted-text);
     margin-top: 20px;
 }
 
@@ -422,21 +466,21 @@ select, input, textarea {
 
 .filter-tab {
     padding: 8px 16px;
-    background: #e9ecef;
+    background: var(--sage);
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 14px;
 }
 
 .filter-tab.active {
-    background: #C96B7E;
+    background: var(--rose);
     color: white;
 }
 
 .person-card {
     background: white;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--line);
     border-radius: 12px;
     padding: 15px;
     margin-bottom: 15px;
@@ -449,7 +493,7 @@ select, input, textarea {
 
 .person-email {
     font-size: 14px;
-    color: #6c757d;
+    color: var(--muted-text);
     margin-bottom: 15px;
 }
 
@@ -466,7 +510,7 @@ select, input, textarea {
 
 .person-status {
     padding-top: 10px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid var(--line);
     font-weight: 600;
 }
 
@@ -476,12 +520,16 @@ select, input, textarea {
 }
 
 .welcome h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
     font-size: 24px;
     margin-bottom: 10px;
 }
 
 .welcome p {
-    color: #6c757d;
+    color: var(--muted-text);
 }
 
 /* Learning Path */
@@ -583,7 +631,7 @@ img[src*="-96.png"] {
 }
 
 .sidebar-header {
-    background: #C96B7E;
+    background: var(--rose);
     color: white;
     padding: 20px;
     display: flex;
@@ -623,7 +671,7 @@ img[src*="-96.png"] {
 }
 
 .sidebar-menu li {
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--line);
 }
 
 .sidebar-menu a {
@@ -632,17 +680,17 @@ img[src*="-96.png"] {
     gap: 15px;
     padding: 18px 20px;
     text-decoration: none;
-    color: #333;
+    color: var(--ink);
     font-size: 16px;
     transition: background 0.2s ease;
 }
 
 .sidebar-menu li:hover {
-    background: #f8f9fa;
+    background: var(--surface);
 }
 
 .sidebar-menu a:hover {
-    background: #f8f9fa;
+    background: var(--surface);
 }
 
 .sidebar-menu a img {
@@ -651,13 +699,13 @@ img[src*="-96.png"] {
 }
 
 .sidebar-menu .logout-link {
-    color: #dc3545;
+    color: var(--danger);
 }
 
 .sidebar-footer {
     padding: 20px;
-    border-top: 1px solid #e0e0e0;
-    background: #f8f9fa;
+    border-top: 1px solid var(--line);
+    background: var(--surface);
 }
 
 .sidebar-user {
@@ -671,7 +719,7 @@ img[src*="-96.png"] {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #C96B7E;
+    background: var(--rose);
     color: white;
     display: flex;
     align-items: center;
@@ -691,7 +739,7 @@ img[src*="-96.png"] {
 
 .sidebar-user-email {
     font-size: 12px;
-    color: #6c757d;
+    color: var(--muted-text);
 }
 
 .sidebar-menu-item-wrapper {
@@ -701,7 +749,7 @@ img[src*="-96.png"] {
 
 .sidebar-menu-disclaimer {
     font-size: 11px;
-    color: #6c757d;
+    color: var(--muted-text);
     padding: 0 20px 12px 59px;
     line-height: 1.3;
 }

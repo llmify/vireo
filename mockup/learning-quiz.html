@@ -20,7 +20,7 @@
         .unit-progress-indicator {
             background: white;
             padding: 12px 16px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--line);
         }
 
         .unit-progress-focus-area {
@@ -39,13 +39,13 @@
         .unit-progress-title {
             font-size: 14px;
             font-weight: 500;
-            color: #333;
+            color: var(--ink);
         }
 
         .unit-progress-count {
             font-size: 13px;
             font-weight: 600;
-            color: #C96B7E;
+            color: var(--rose);
         }
 
         /* Quiz options inline */
@@ -58,32 +58,32 @@
 
         .quiz-option {
             padding: 10px 14px;
-            background: #f8f9fa;
-            border: 2px solid #e0e0e0;
+            background: var(--surface);
+            border: 2px solid var(--line);
             border-radius: 8px;
             font-size: 13px;
-            color: #333;
+            color: var(--ink);
             text-align: left;
         }
 
         .quiz-option.selected {
-            background: #fdf5f6;
-            border-color: #C96B7E;
-            color: #C96B7E;
+            background: var(--blush);
+            border-color: var(--rose);
+            color: var(--rose);
             font-weight: 500;
         }
 
         .quiz-option.correct {
-            background: #e8f5e9;
-            border-color: #4caf50;
-            color: #2e7d32;
+            background: var(--success-bg);
+            border-color: var(--success);
+            color: var(--success);
             font-weight: 500;
         }
 
         .quiz-option.incorrect {
-            background: #ffebee;
-            border-color: #f44336;
-            color: #c62828;
+            background: var(--danger-bg);
+            border-color: var(--danger);
+            color: var(--danger);
         }
 
         /* Help button row */
@@ -91,14 +91,14 @@
             display: flex;
             justify-content: center;
             padding: 8px 16px;
-            background: #f8f9fa;
-            border-top: 1px solid #e0e0e0;
+            background: var(--surface);
+            border-top: 1px solid var(--line);
         }
 
         .help-pill-button {
             background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 20px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
             padding: 6px 16px;
             font-size: 13px;
             color: #666;
@@ -154,7 +154,7 @@
             <!-- Coach feedback -->
             <div class="message coach clearfix">
                 <div class="message-bubble">
-                    <strong style="color: #4caf50;">✓ Richtig!</strong> Gefühle spiegeln zeigt Verständnis. Offene Fragen ermutigen zum Weitererzählen.
+                    <strong style="color: var(--success);">✓ Richtig!</strong> Gefühle spiegeln zeigt Verständnis. Offene Fragen ermutigen zum Weitererzählen.
                 </div>
             </div>
 

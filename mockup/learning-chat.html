@@ -20,7 +20,7 @@
         .unit-progress-indicator {
             background: white;
             padding: 12px 16px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--line);
         }
 
         .unit-progress-header {
@@ -42,18 +42,18 @@
         .unit-progress-title {
             font-size: 14px;
             font-weight: 500;
-            color: #333;
+            color: var(--ink);
         }
 
         .unit-progress-count {
             font-size: 13px;
             font-weight: 600;
-            color: #C96B7E;
+            color: var(--rose);
         }
 
         /* Role indicator banner */
         .role-indicator {
-            background: linear-gradient(135deg, #6b5b95 0%, #5a4a7a 100%);
+            background: var(--ink);
             color: white;
             padding: 10px 16px;
             display: flex;
@@ -108,13 +108,13 @@
         /* Help message styling */
         .help-message-indicator {
             font-size: 11px;
-            color: #0d6efd;
+            color: var(--muted-text);
             margin-bottom: 4px;
         }
 
         .message-bubble-help {
-            background: linear-gradient(135deg, #e8f4fc 0%, #d4edfc 100%) !important;
-            border-left: 3px solid #0d6efd !important;
+            background: var(--sage) !important;
+            border-left: 3px solid var(--rose) !important;
         }
 
         /* Help button row */
@@ -122,26 +122,26 @@
             display: flex;
             justify-content: center;
             padding: 8px 16px;
-            background: #f8f9fa;
-            border-top: 1px solid #e0e0e0;
+            background: var(--surface);
+            border-top: 1px solid var(--line);
             position: relative;
         }
 
         .help-pill-button {
-            background: #e8f4fc;
-            border: 1px solid #b8ddf0;
+            background: var(--sage);
+            border: 1px solid var(--line);
             border-radius: 20px;
             padding: 6px 16px;
             font-size: 13px;
-            color: #0d6efd;
+            color: var(--muted-text);
             cursor: pointer;
             transition: all 0.2s;
             font-weight: 500;
         }
 
         .help-pill-button:hover {
-            background: #d4edfc;
-            border-color: #0d6efd;
+            background: var(--surface);
+            border-color: var(--muted-text);
         }
 
         /* Help menu */
@@ -157,7 +157,7 @@
             left: 50%;
             transform: translateX(-50%);
             background: white;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--line);
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             z-index: 101;
@@ -173,24 +173,24 @@
             border: none;
             text-align: left;
             font-size: 14px;
-            color: #333;
+            color: var(--ink);
             cursor: pointer;
         }
 
         .help-menu-item:hover {
-            background: #f8f9fa;
+            background: var(--surface);
         }
 
         .help-menu-separator {
             height: 1px;
-            background: #e0e0e0;
+            background: var(--line);
         }
 
         /* Options container for quiz mode */
         .options-container {
             padding: 12px 16px;
             background: white;
-            border-top: 1px solid #e0e0e0;
+            border-top: 1px solid var(--line);
             display: flex;
             flex-direction: column;
             gap: 8px;
@@ -198,30 +198,30 @@
 
         .option-btn {
             padding: 12px 16px;
-            background: #f8f9fa;
-            border: 1px solid #e0e0e0;
+            background: var(--surface);
+            border: 1px solid var(--line);
             border-radius: 8px;
             font-size: 14px;
-            color: #333;
+            color: var(--ink);
             cursor: pointer;
             text-align: left;
             transition: all 0.2s;
         }
 
         .option-btn:hover {
-            background: #e9ecef;
-            border-color: #C96B7E;
+            background: var(--sage);
+            border-color: var(--rose);
         }
 
         .option-btn-primary {
-            background: #C96B7E;
+            background: var(--rose);
             color: white;
-            border-color: #C96B7E;
+            border-color: var(--rose);
             text-align: center;
         }
 
         .option-btn-primary:hover {
-            background: #b35a6d;
+            background: var(--rose-deep);
         }
 
         /* Voice button */
@@ -230,7 +230,7 @@
             min-width: 44px;
             padding: 10px;
             background: white;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--line);
             border-radius: 8px;
             cursor: pointer;
             display: flex;
@@ -338,7 +338,7 @@
 
             <!-- Coach feedback -->
             <div class="message coach clearfix">
-                <div class="coach-label" style="color: #C96B7E;">Coach</div>
+                <div class="coach-label" style="color: var(--rose);">Coach</div>
                 <div class="message-bubble">
                     ✓ Gut! Du spiegelst ihre Gefühle und zeigst Wertschätzung.
                 </div>

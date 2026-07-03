@@ -27,22 +27,22 @@
         }
 
         .focus-area-card.priority {
-            background: linear-gradient(135deg, #fff8e7 0%, #fff3cd 100%);
-            border: 2px solid #ffa500;
+            background: var(--blush);
+            border: 1px solid var(--rose);
         }
 
         .focus-area-card.priority.selected {
-            background: linear-gradient(135deg, #fff3cd 0%, #ffe4a3 100%);
+            background: var(--blush);
         }
 
         .focus-area-card.normal {
             background: #fff;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--line);
         }
 
         .focus-area-card.normal.selected {
-            background: #f8f9fa;
-            border: 2px solid #C96B7E;
+            background: var(--sage);
+            border: 1px solid var(--rose);
         }
 
         .focus-area-header {
@@ -59,7 +59,7 @@
 
         .focus-area-parent {
             font-size: 11px;
-            color: #666;
+            color: var(--muted-text);
             margin-top: 2px;
         }
 
@@ -67,8 +67,8 @@
             font-size: 9px;
             font-weight: 700;
             text-transform: uppercase;
-            color: #e65100;
-            background: rgba(230, 81, 0, 0.1);
+            color: var(--rose);
+            background: var(--blush);
             padding: 2px 6px;
             border-radius: 4px;
         }
@@ -102,17 +102,17 @@
         }
 
         .timeline-dot.completed {
-            border-color: #555;
-            background: #555;
+            border-color: var(--ink);
+            background: var(--ink);
         }
 
         .timeline-dot.current {
-            border-color: #555;
-            background: linear-gradient(to right, #555 50%, transparent 50%);
+            border-color: var(--ink);
+            background: linear-gradient(to right, var(--ink) 50%, transparent 50%);
         }
 
         .timeline-dot.pending {
-            border-color: #ccc;
+            border-color: var(--line);
             background: transparent;
         }
 
@@ -123,11 +123,11 @@
         }
 
         .timeline-line.completed {
-            background: #555;
+            background: var(--ink);
         }
 
         .timeline-line.pending {
-            background: #e0e0e0;
+            background: var(--line);
         }
 
         .timeline-label {
@@ -136,16 +136,16 @@
         }
 
         .timeline-label.completed {
-            color: #555;
+            color: var(--ink);
         }
 
         .timeline-label.current {
-            color: #555;
+            color: var(--ink);
             font-weight: 500;
         }
 
         .timeline-label.pending {
-            color: #666;
+            color: var(--muted-text);
         }
 
         .focus-area-button {
@@ -160,27 +160,27 @@
         }
 
         .focus-area-button.priority {
-            background: #e65100;
+            background: var(--rose);
             color: white;
         }
 
         .focus-area-button.normal {
-            background: #C96B7E;
+            background: var(--rose);
             color: white;
         }
 
         .focus-area-button.complete {
-            background: #e8f5e9;
-            color: #4caf50;
-            border: 1px solid #4caf50;
+            background: var(--success-bg);
+            color: var(--success);
+            border: 1px solid var(--success);
             cursor: default;
         }
 
         /* Summary box */
         .lernpfad-summary-box {
             padding: 14px 16px;
-            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 100%);
-            border: 1px solid #d0e3f0;
+            background: var(--sage);
+            border: 1px solid var(--line);
             border-radius: 10px;
             margin-bottom: 20px;
         }
@@ -188,7 +188,7 @@
         .summary-label {
             font-size: 11px;
             font-weight: 600;
-            color: #5a7a9a;
+            color: var(--muted-text);
             margin-bottom: 4px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -196,7 +196,7 @@
 
         .summary-text {
             font-size: 14px;
-            color: #334155;
+            color: var(--body-text);
             line-height: 1.4;
         }
 
@@ -204,7 +204,7 @@
         .focus-areas-header {
             font-size: 13px;
             font-weight: 600;
-            color: #333;
+            color: var(--ink);
             margin-bottom: 12px;
         }
 
@@ -216,14 +216,14 @@
 
         .lernpfad-meta {
             font-size: 10px;
-            color: #999;
+            color: var(--muted-text);
             margin-bottom: 8px;
         }
 
         .regenerate-link {
             background: transparent;
             border: none;
-            color: #999;
+            color: var(--muted-text);
             font-size: 11px;
             cursor: pointer;
             text-decoration: underline;
