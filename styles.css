@@ -416,6 +416,7 @@ body {
 
 /* Device frames — straight-on, flat */
 .phone-frame {
+    position: relative;
     width: 322px;
     background: #22301F;
     border-radius: 34px;
@@ -423,6 +424,18 @@ body {
     box-shadow:
         0 24px 48px rgba(31, 61, 36, 0.18),
         0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+.phone-frame::after {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 84px;
+    height: 20px;
+    background: #22301F;
+    border-radius: 999px;
 }
 
 .phone-frame iframe {
