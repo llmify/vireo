@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /mockup/
+
+Sitemap: https://vireo-empower.ch/sitemap.xml
