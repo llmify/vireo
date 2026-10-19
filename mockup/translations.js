@@ -432,9 +432,29 @@ const translations = {
 };
 
 // Language switcher function
+// Mockups embedded on the landing page always start in German and do not
+// persist a language switch: localStorage is shared by all mockups on the
+// origin, so one click on the globe would otherwise turn every mockup
+// English for that visitor.
+const IS_EMBEDDED = window.self !== window.top;
+let currentLang = 'de';
+
+function getSavedLanguage() {
+    if (IS_EMBEDDED) return 'de';
+    try {
+        return localStorage.getItem('preferredLanguage') || 'de';
+    } catch (e) {
+        return 'de';
+    }
+}
+
 function switchLanguage(lang) {
-    // Store language preference
-    localStorage.setItem('preferredLanguage', lang);
+    currentLang = lang;
+    if (!IS_EMBEDDED) {
+        try {
+            localStorage.setItem('preferredLanguage', lang);
+        } catch (e) {}
+    }
 
     // Update all elements with data-translate attribute
     document.querySelectorAll('[data-translate]').forEach(element => {
@@ -461,15 +481,13 @@ function switchLanguage(lang) {
 // Initialize language on page load
 document.addEventListener('DOMContentLoaded', function () {
     // Get saved language or default to German
-    const savedLang = localStorage.getItem('preferredLanguage') || 'de';
-    switchLanguage(savedLang);
+    switchLanguage(getSavedLanguage());
 
     // Add click event to language selector
     const langSelectors = document.querySelectorAll('.lang-selector');
     langSelectors.forEach(selector => {
         selector.style.cursor = 'pointer';
         selector.addEventListener('click', function () {
-            const currentLang = localStorage.getItem('preferredLanguage') || 'de';
             const languages = ['de', 'sq', 'en', 'fr', 'it'];
             const currentIndex = languages.indexOf(currentLang);
             const nextLang = languages[(currentIndex + 1) % languages.length];

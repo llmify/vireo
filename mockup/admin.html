@@ -33,9 +33,7 @@
                 <img src="icons/back-72.png" alt="Back" class="icon-white" style="vertical-align: middle;">
             </a>
             <h1 data-translate="office">Geschaftsstelle</h1>
-            <span class="lang-selector">
-                <img src="icons/language-72.png" alt="Language" class="icon-white" style="vertical-align: middle;"> DE
-            </span>
+            <span class="lang-selector"><img src="icons/language-72.png" alt="Language" class="icon-white" style="vertical-align: middle;"> DE</span>
         </div>
         <div class="content">
             <h2 style="margin-bottom: 20px;" data-translate="competency_overview">Kompetenz-Ubersicht</h2>
@@ -115,8 +113,7 @@
 
         // Update placeholders on page load
         document.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('preferredLanguage') || 'de';
-            updatePlaceholders(savedLang);
+            updatePlaceholders(getSavedLanguage());
         });
 
     </script>
