@@ -123,21 +123,6 @@ body {
     margin-bottom: 28px;
 }
 
-.hero-trust {
-    font-size: 14px;
-    color: var(--muted-text);
-}
-
-.hero-trust a {
-    color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.hero-trust a:hover {
-    color: var(--ink);
-}
-
 .hero-demo {
     display: flex;
     flex-direction: column;
@@ -667,6 +652,110 @@ body {
 }
 
 /* ==========================================================================
+   Trust strip
+   ========================================================================== */
+
+/* Hero + trust strip fill exactly the first screen on desktop: the strip sits
+   at the bottom edge, the hero takes the remaining height. The phone mockup
+   only shrinks as far as the viewport height requires. */
+@media (min-width: 1101px) {
+    .above-fold {
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .above-fold .hero {
+        flex: 1;
+        min-height: 0;
+        padding: 136px 24px 32px;
+    }
+
+    .above-fold .hero-copy h1 {
+        font-size: clamp(38px, min(4.6vw, 6.2vh), 58px);
+    }
+
+    .above-fold .phone-frame {
+        transform-origin: top center;
+    }
+}
+
+@media (min-width: 1101px) and (max-height: 909px) {
+    .above-fold .phone-frame { transform: scale(0.88); margin-bottom: -74px; }
+}
+
+@media (min-width: 1101px) and (max-height: 839px) {
+    .above-fold .hero { padding: 112px 24px 24px; }
+    .above-fold .hero-copy > p { font-size: 17px; margin-bottom: 28px; }
+    .above-fold .phone-frame { transform: scale(0.78); margin-bottom: -135px; }
+}
+
+@media (min-width: 1101px) and (max-height: 769px) {
+    .above-fold .phone-frame { transform: scale(0.7); margin-bottom: -184px; }
+}
+
+.trust-strip {
+    border-top: 1px solid var(--line);
+    padding: 22px 24px 26px;
+}
+
+.trust-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+}
+
+.trust-group {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.trust-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-text);
+}
+
+/* Logo heights differ on purpose: they balance the visual weight of
+   wordmarks vs. stacked marks so all four read as the same size. */
+.trust-logos {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    height: 52px;
+}
+
+.trust-logos a {
+    display: block;
+    filter: grayscale(1);
+    opacity: 0.5;
+    transition: filter 0.25s ease, opacity 0.25s ease;
+}
+
+.trust-logos a:hover {
+    filter: none;
+    opacity: 1;
+}
+
+.trust-divider {
+    width: 1px;
+    height: 32px;
+    background: var(--line);
+}
+
+.trust-logo-ed { height: 48px; width: auto; display: block; }
+.trust-logo-llmify { height: 24px; width: auto; display: block; }
+.trust-logo-artiset { height: 22px; width: auto; display: block; }
+.trust-logo-pss { height: 52px; width: auto; display: block; }
+
+/* ==========================================================================
    Responsive
    ========================================================================== */
 
@@ -747,6 +836,21 @@ body {
 }
 
 @media (max-width: 600px) {
+    .trust-inner {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .trust-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .trust-divider {
+        width: 64px;
+        height: 1px;
+    }
+
     .hero-actions {
         flex-direction: column;
         align-items: stretch;
@@ -810,7 +914,8 @@ body {
     }
 
     .play-button,
-    .footer-mail {
+    .footer-mail,
+    .trust-logos a {
         transition: none;
     }
 }
