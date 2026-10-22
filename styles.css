@@ -676,22 +676,39 @@ body {
         font-size: clamp(38px, min(4.6vw, 6.2vh), 58px);
     }
 
+    /* Shorter, softer shadow so it doesn't spill onto the trust strip */
     .above-fold .phone-frame {
         transform-origin: top center;
+        box-shadow: 0 10px 24px rgba(31, 61, 36, 0.12), 0 2px 6px rgba(31, 61, 36, 0.06);
     }
 }
 
+/* Phone scale steps: largest size that still leaves the trust strip on the
+   first screen. margin-bottom cancels the space freed by the transform
+   (614px * (1 - scale)). */
 @media (min-width: 1101px) and (max-height: 909px) {
-    .above-fold .phone-frame { transform: scale(0.88); margin-bottom: -74px; }
-}
-
-@media (min-width: 1101px) and (max-height: 839px) {
     .above-fold .hero { padding: 112px 24px 24px; }
     .above-fold .hero-copy > p { font-size: 17px; margin-bottom: 28px; }
-    .above-fold .phone-frame { transform: scale(0.78); margin-bottom: -135px; }
+    .above-fold .phone-frame { transform: scale(0.96); margin-bottom: -25px; }
 }
 
-@media (min-width: 1101px) and (max-height: 769px) {
+@media (min-width: 1101px) and (max-height: 859px) {
+    .above-fold .phone-frame { transform: scale(0.9); margin-bottom: -61px; }
+}
+
+@media (min-width: 1101px) and (max-height: 819px) {
+    .above-fold .phone-frame { transform: scale(0.85); margin-bottom: -92px; }
+}
+
+@media (min-width: 1101px) and (max-height: 784px) {
+    .above-fold .phone-frame { transform: scale(0.8); margin-bottom: -123px; }
+}
+
+@media (min-width: 1101px) and (max-height: 749px) {
+    .above-fold .phone-frame { transform: scale(0.75); margin-bottom: -154px; }
+}
+
+@media (min-width: 1101px) and (max-height: 719px) {
     .above-fold .phone-frame { transform: scale(0.7); margin-bottom: -184px; }
 }
 
