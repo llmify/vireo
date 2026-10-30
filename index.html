@@ -76,7 +76,7 @@
                         <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><polygon points="5,3 19,12 5,21"/></svg>
                         <span>Video ansehen</span>
                     </button>
-                    <a href="#pakete" class="btn-secondary">Pakete vergleichen</a>
+                    <a href="#kontakt" class="btn-secondary">Kontakt aufnehmen</a>
                 </div>
             </div>
             <div class="hero-demo">
@@ -124,7 +124,7 @@
         <a href="#reflexion">Reflexion</a>
         <a href="#koordination">Koordination</a>
         <span class="nav-divider"></span>
-        <a href="#pakete">Pakete</a>
+        <a href="#kontakt">Kontakt</a>
     </nav>
 
     <!-- ==================== ASSESSMENT ==================== -->
@@ -283,64 +283,10 @@
         </section>
     </div>
 
-    <!-- ==================== PREISE ==================== -->
-    <div id="pakete" class="pricing-section">
-        <div class="pricing-intro">
-            <h2>Pakete</h2>
-            <p>Zwei Pakete, flexibel erweiterbar.</p>
-        </div>
-
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <div class="pricing-card-label">Paket</div>
-                <h3>Light</h3>
-                <p class="pricing-card-desc">Strukturiertes Lernen mit Theorie, Quiz und Rollenspiel. Ohne Assessment.</p>
-                <ul class="pricing-features">
-                    <li>Lernpfad (Theorie, Quiz, Rollenspiel)</li>
-                    <li>Spracheingabe</li>
-                    <li>Geschäftsstelle mit Team-Übersicht</li>
-                    <li class="muted">Kein Assessment</li>
-                    <li class="muted">Kein personalisierter Lernpfad</li>
-                </ul>
-            </div>
-            <div class="pricing-card featured">
-                <div class="pricing-card-label">Paket</div>
-                <h3>Standard</h3>
-                <p class="pricing-card-desc">Assessment-basierte Standortbestimmung mit personalisierten Lernpfaden.</p>
-                <ul class="pricing-features">
-                    <li>Alles aus Light</li>
-                    <li>Kompetenz-Assessment</li>
-                    <li>Personalisierter Lernpfad</li>
-                    <li>Detaillierte Kompetenzprofile</li>
-                    <li>Nachvollziehbare Begründungen</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="addons-title">Zusatzmodule</div>
-        <div class="addons-grid">
-            <div class="addon-card">
-                <span class="addon-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span>
-                <h4>Reflexions-Coach</h4>
-                <p>Begleitete Reflexion zu Situationen aus dem Arbeitsalltag mit Erkennung von Grenzüberschreitungen.</p>
-            </div>
-            <div class="addon-card">
-                <span class="addon-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>
-                <h4>Automatische Inhalte</h4>
-                <p>KI-gestützte Erstellung von Lernmaterialien aus bestehenden Dokumenten der Organisation.</p>
-            </div>
-            <div class="addon-card">
-                <span class="addon-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
-                <h4>Schweizer Hosting</h4>
-                <p>Hosting ausschliesslich bei Schweizer Anbietern, ohne US-Provider.</p>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
-    <footer class="footer">
-        <h2>Bereit für den nächsten Schritt?</h2>
-        <p>Kontaktieren Sie uns für ein unverbindliches Gespräch.</p>
+    <footer id="kontakt" class="footer">
+        <h2>Interessiert?</h2>
+        <p>Kontaktieren Sie uns gerne per E-Mail.</p>
         <a href="mailto:kontakt@vireo-empower.ch" class="footer-mail">kontakt@vireo-empower.ch</a>
         <div class="footer-legal">
             Ein Projekt von <a href="https://www.entlastungsdienst.ch" target="_blank">Entlastungsdienst Schweiz</a> und <a href="https://llmify.ch" target="_blank">LLMify AG</a><br>
@@ -411,7 +357,7 @@
         // Feature nav: active section highlight
         const nav = document.querySelector('.feature-nav');
         const navLinks = nav.querySelectorAll('a');
-        const sections = document.querySelectorAll('.module[id], .pricing-section[id]');
+        const sections = document.querySelectorAll('.module[id], .footer[id]');
 
         window.addEventListener('scroll', () => {
             let current = '';
